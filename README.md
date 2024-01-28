@@ -1,10 +1,9 @@
 # Job Application Vault
 
-<!--Application Description-->
+The Job Application Vault is a robust desktop application developed with Python, PyQT, and SQLite, designed to empower users in efficiently managing their job search journey. This comprehensive tool goes beyond basic tracking, offering an extensive set of features to enhance the user's job application experience.
 
 ## Features
 
-<!--An unordered list of features-->
 - **Comprehensive Job Application Details:** Each job application record includes essential information such as company, position, location, employment status, city, state, and a detailed job description.
 - **Application Status History:** Users can track the application status history for each job application, providing a chronological view of their progress in the application process.
 - **Technical Skills Tracking:** The application allows users to maintain a list of technical skills associated with each job application, aiding in skill assessment and highlighting areas of expertise.
