@@ -10,7 +10,7 @@
 
 - Python 3
 - PyQt 6
-- SQLite
+- SQLite 3
 
 ## Installation
 
