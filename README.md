@@ -18,9 +18,9 @@
 
 ## Prerequisites
 
-- Python 3
-- PyQt 6
-- SQLite 3
+- Python 3.x
+- PyQt6
+- SQLite
 
 ## Installation
 
