@@ -2,6 +2,7 @@ job_application_vault/
 |
 |- src/							# Source code directory
 |    |- main.py
+|    |
 |    |- gui/						# Directory for GUI-related code
 |    |    |- __init__.py
 |    |    |- main_window.py
