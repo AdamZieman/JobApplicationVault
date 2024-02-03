@@ -1,48 +1,48 @@
 job_application_vault/
 |
-|- src/					# Source code directory
+|- src/							# Source code directory
 |    |- main.py
-|    |- gui/				# Directory for GUI-related code
+|    |- gui/						# Directory for GUI-related code
 |    |    |- __init__.py
 |    |    |- main_window.py
 |    |    |- (other GUI-related files)
 |    |
-|    |- database/			# Directory for database-related code
+|    |- database/					# Directory for database-related code
 |    |    |- __init__.py
 |    |    |- database_manager.py
 |    |    |- (other database-related files)
 |
-|- resources/				# Directory for general resources
-|    |- images/				# Directory for images
+|- resources/						# Directory for general resources
+|    |- images/						# Directory for images
 |    |    |- (image files)
 |    |
-|    |- icons/				# Directory for icons
+|    |- icons/						# Directory for icons
 |    |    |- (icon files)
 |    |
-|    |- ui_files/			# Directory for UI files used in development
+|    |- ui_files/					# Directory for UI files used in development
 |    |    |- main_window.ui
 |    |    |- (other UI files)
 |
-|- data_files/				# Directory for data files
+|- data_files/						# Directory for data files
 |    |- general_interview_questions.txt
 |    |- technical_interview_questions.txt
 |
-|- database_files/			# Directory for SQLite database files
+|- database_files/					# Directory for SQLite database files
 |    |- my_database.db
 |    |- (other database files)
 |
-|- docs/				# Directory for documentation and configuration files
+|- docs/						# Directory for documentation and configuration files
 |    |- schema.sql
 |    |- directory_structure.txt
 |    |- (other documentation or configuration files)
 |
-|- .git/				# Git version control directory
+|- .git/						# Git version control directory
 |    |- (git-related files and directories)
 |
-|- .venv/				# Virtual environment directory
+|- .venv/						# Virtual environment directory
 |    |- (virtual environment directories)
 |
-|- requirements.txt			# Python dependencies files for production
-|- requirements-dev.txt			# Python dependencies file for development
-|- README.md				# Project documentation
-|- .gitignore				# Git ignore files
+|- requirements.txt					# Python dependencies files for production
+|- requirements-dev.txt					# Python dependencies file for development
+|- README.md						# Project documentation
+|- .gitignore						# Git ignore files
