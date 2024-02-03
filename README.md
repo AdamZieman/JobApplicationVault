@@ -30,7 +30,7 @@ The Job Application Vault is a desktop application developed with Python, PyQT, 
 
 ## Usage
 
-1. Navigate to the project directory: `cd job-application-vault`
+1. Navigate to the project's source code directory: `cd job-application-vault/src`
 2. Run the application: `python main.py`
 3. Use the application to add, edit, and manage your job applications
 
