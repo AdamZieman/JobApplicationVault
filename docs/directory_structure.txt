@@ -37,10 +37,6 @@ job_application_vault/
 |    |- (other documentation or configuration files)
 |
 |- .git/						# Git version control directory
-|    |- (git-related files and directories)
-|
-|- .venv/						# Virtual environment directory
-|    |- (virtual environment directories)
 |
 |- requirements.txt					# Python dependencies files for production
 |- requirements-dev.txt					# Python dependencies file for development
