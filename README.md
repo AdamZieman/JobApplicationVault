@@ -15,21 +15,23 @@ The Job Application Vault is a robust desktop application developed with Python,
 - **SQLite Database Integration:** All job application details, application status history, technical skills, and contact information are stored in an SQLite database, ensuring data integrity and efficient retrieval.
 - **Text Document Storage for Interview Questions:** Users can add, view, and edit general interview questions and technical interview questions, which are stored in text documents. This feature enables users to prepare and review common interview queries for improved performance.
 
-## Prerequisites
+## Requirements
 
-- Python 2.7 - 3.10 (but not 3.0 - 3.4)
-- PyQt 5
+- Python 3.9.10
+- pip
 - SQLite
 
 ## Dependencies
 
 - Python Modules
-  - PySide2
+  - PyQt5 5.15.10
+  - PySide2 5.15.2.1
 
 ## Installation
 
 1. Clone the Repository: `git clone https://github.com/AdamZieman/job-application-vault.git`
-2. Install dependencies: `pip install -r requirments.txt`
+2. Install production-level dependencies: `pip install -r requirments.txt`
+3. Install developement-level dependencies: `pip install -r requirements-dev.txt`
 
 ## Usage
 
@@ -44,4 +46,5 @@ The Job Application Vault is a robust desktop application developed with Python,
 ## Acknowledgments
 
 - The application was built using the PyQt library for the graphical user interface.
+- [Box Icons](https://boxicons.com/) was used to gather icons for the graphical user interface.
 - SQLite was used for the database management.
