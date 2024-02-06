@@ -41,5 +41,4 @@ The Job Application Vault is a desktop application developed with Python, PyQT, 
 ## Acknowledgments
 
 - The application was built using the PyQt library for the graphical user interface.
-- GUI icons were gathered from [boxicons.com](https://boxicons.com/).
 - SQLite was used for the database management.
