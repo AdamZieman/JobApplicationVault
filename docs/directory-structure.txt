@@ -1,24 +1,24 @@
 JobApplicationVault/
-|
 |- src/                                                 # Source code directory
 |    |- main.py
 |    |
 |    |- gui/                                            # Directory for GUI-related code
+|    |    |- ui_main_window.py
 |    |
 |    |- database/                                       # Directory for database-related code
 |
 |- resources/                                           # Directory for general resources
 |    |- images/                                         # Directory for images
 |    |
-|    |- icons/                                          # Directory for icons
-|    |
 |    |- ui_files/                                       # Directory for UI files used in development
+|    |    |- main_window.ui
 |
 |- data_files/                                          # Directory for data files
 |    |- general-interview-questions.txt
 |    |- technical-interview-questions.txt
 |
 |- database_files/                                      # Directory for SQLite database files
+|    |- JobApplicationVault_database.db
 |
 |- docs/                                                # Directory for documentation files
 |    |- directory-structure.txt
