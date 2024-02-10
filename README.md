@@ -18,9 +18,8 @@ The Job Application Vault is a desktop application developed with Python, PyQT, 
 
 ## Dependencies
 
-- Python Modules
-  - PyQt5
-  - PySide2
+- PyQt5
+- PySide2
 
 ## Installation
 
