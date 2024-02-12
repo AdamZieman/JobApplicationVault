@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+import sqlite3
 
 
 class Ui_MainWindow(object):
@@ -527,7 +528,7 @@ class Ui_MainWindow(object):
         self.appications_table_widget.setLineWidth(1)
         self.appications_table_widget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.appications_table_widget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.appications_table_widget.setEditTriggers(QtWidgets.QAbstractItemView.SelectedClicked)
+        self.appications_table_widget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.appications_table_widget.setAlternatingRowColors(True)
         self.appications_table_widget.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.appications_table_widget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
@@ -537,6 +538,7 @@ class Ui_MainWindow(object):
         self.appications_table_widget.setWordWrap(True)
         self.appications_table_widget.setCornerButtonEnabled(False)
         self.appications_table_widget.setRowCount(0)
+        self.appications_table_widget.verticalHeader().setVisible(False)
         self.appications_table_widget.setObjectName("appications_table_widget")
         self.appications_table_widget.setColumnCount(5)
         item = QtWidgets.QTableWidgetItem()
@@ -552,7 +554,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         item.setFont(font)
-        self.appications_table_widget.setColumnWidth(0, 300)
+        self.appications_table_widget.setColumnWidth(0, 200)
         # column 1 (position)
         self.appications_table_widget.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
@@ -584,6 +586,9 @@ class Ui_MainWindow(object):
         self.appications_table_widget.horizontalHeader().setStretchLastSection(True)
         self.appications_table_widget.verticalHeader().setStretchLastSection(False)
         self.applicationContentFrame_layout.addWidget(self.appications_table_widget)
+
+        # populate the applications table widget
+        self.populate_applications_table()
 
         # application content actions frame
         self.application_content_actions_frame = QtWidgets.QFrame(self.application_content_frame)
@@ -987,3 +992,50 @@ class Ui_MainWindow(object):
         self.questions_page_button.setStyleSheet(
             ""
         )
+
+    def populate_applications_table(self):
+        connection = sqlite3.connect("database_files\JobApplicationVault_database.db")
+        cur = connection.cursor()
+
+        # Set the table widget's row count to the amount of records in the job_applications table
+        cur.execute("SELECT COUNT(*) FROM job_applications")
+        row_count = cur.fetchone()[0]
+        self.appications_table_widget.setRowCount(row_count)
+        
+        tablerow = 0
+        sqlquery = """
+            SELECT
+                ja.company,
+                ja.position,
+                ja.city,
+                ja.state,
+                as1.status,
+                date(as1.julian_date)
+            FROM
+                job_applications ja
+            JOIN
+                application_statuses as1 ON ja.job_application_id = as1.job_application_id
+            WHERE
+                as1.julian_date = (
+                    SELECT
+                        MAX(as2.julian_date)
+                    FROM
+                        application_statuses as2
+                    WHERE
+                        as2.job_application_id = ja.job_application_id
+            );
+        """
+        
+        for row in cur.execute(sqlquery):
+            company, position, city, state, status, date = row
+            location = f"{city}, {state}"
+        #   self.appications_table_widget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
+            self.appications_table_widget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(company))
+            self.appications_table_widget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(position))
+            self.appications_table_widget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(location))
+            self.appications_table_widget.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(status))
+            self.appications_table_widget.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(date))
+            tablerow += 1
+
+        # Close the database connection
+        connection.close()
