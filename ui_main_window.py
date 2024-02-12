@@ -994,7 +994,7 @@ class Ui_MainWindow(object):
         )
 
     def populate_applications_table(self):
-        connection = sqlite3.connect("database_files\JobApplicationVault_database.db")
+        connection = sqlite3.connect("JobApplicationVault_database.db")
         cur = connection.cursor()
 
         # Set the table widget's row count to the amount of records in the job_applications table
