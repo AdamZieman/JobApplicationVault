@@ -1,0 +1,1297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>450</width>
+    <height>706</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>450</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>450</width>
+    <height>900</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <layout class="QVBoxLayout" name="centralwidget_layout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>431</width>
+         <height>1522</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <layout class="QVBoxLayout" name="scrikkAreaWidgetContents_layout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QFrame" name="application_title_frame">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: white;
+background-color: rgb(50, 50, 75);</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QLabel" name="application_title_label">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>NEW APPLICATION</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="application_body_frame">
+          <property name="styleSheet">
+           <string notr="true">#application_body_frame {
+background-color: rgb(240, 240, 240);
+}
+
+QGroupBox {
+border: 1px solid rgb(220, 220, 220);
+border-radius: 20px;
+padding-top: 15px;
+color: rgb(33, 150, 243);
+}
+
+QLineEdit, QComboBox, QPlainTextEdit, QTableWidget {
+border: 0px;
+}
+
+QPushButton {
+padding: 5px 15px;
+border: none;
+border-radius: 5px;
+background-color: rgb(33, 150, 243);
+color: white;
+}
+
+QPushButton:Hover {
+background-color: rgb(25, 105, 170);
+}
+
+QPushButton:Pressed {
+background-color: rgb(33, 150, 243);
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_13">
+           <property name="spacing">
+            <number>24</number>
+           </property>
+           <property name="leftMargin">
+            <number>24</number>
+           </property>
+           <property name="topMargin">
+            <number>24</number>
+           </property>
+           <property name="rightMargin">
+            <number>24</number>
+           </property>
+           <property name="bottomMargin">
+            <number>24</number>
+           </property>
+           <item>
+            <widget class="QGroupBox" name="company_details_group_box">
+             <property name="font">
+              <font>
+               <pointsize>11</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="title">
+              <string>Company Details</string>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QFrame" name="company_frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_2">
+                 <item>
+                  <widget class="QLabel" name="company_label">
+                   <property name="text">
+                    <string>Company:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="company_line_edit">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="city_frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_3">
+                 <item>
+                  <widget class="QLabel" name="city_label">
+                   <property name="text">
+                    <string>City:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="city_line_edit">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="state_frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_4">
+                 <item>
+                  <widget class="QLabel" name="state_label">
+                   <property name="text">
+                    <string>State:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="state_combo_box">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>-</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Alabama</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Alaska</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Arizona</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Arkansas</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>California</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Colorado</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Connecticut</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Delaware</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Florida</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Georgia</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Hawaii</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Idaho</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Illinois</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Indiana</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Iowa</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Kansas</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Kentucky</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Louisiana</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Maine</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Maryland</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Massachusetts</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Michigan</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Minnesota</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Mississippi</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Missouri</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Montana</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Nebraska</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>New Hampshire</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>New Jersey</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>New Mexico</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>New York</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>North Carolina</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>North Dakota</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Ohio</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Oklahoma</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Oregon</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Pennsylvania</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Rhode Island</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>South Carolina</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>South Dakota</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Tennessee</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Texas</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Utah</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Vermont</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Virginia</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Washington</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>West Virginia</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Wisconsin</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Wyoming</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="position_details_group_box">
+             <property name="font">
+              <font>
+               <pointsize>11</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="title">
+              <string>Position Details</string>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_10">
+              <item>
+               <widget class="QFrame" name="position_frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_6">
+                 <item>
+                  <widget class="QLabel" name="position_label">
+                   <property name="text">
+                    <string>Position:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="position_line_edit">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="work_style_frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_7">
+                 <item>
+                  <widget class="QLabel" name="work_style_label">
+                   <property name="text">
+                    <string>Work Style:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="work_style_combo_box">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>-</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>On-Site</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Remote</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Hybrid</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="employment_status_frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_8">
+                 <item>
+                  <widget class="QLabel" name="employment_status_label">
+                   <property name="text">
+                    <string>Employment Status:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="employment_status_combo_box">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>-</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Full-Time</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Part-Time</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Contract</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Freelance</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Temporary</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Volunteer</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Co-Op</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Internship</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="job_details_frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_9">
+                 <item>
+                  <widget class="QLabel" name="job_description_label">
+                   <property name="text">
+                    <string>Job Description</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPlainTextEdit" name="job_description_plain_text_edit">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>250</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>250</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="contacts_information_group_box">
+             <property name="font">
+              <font>
+               <pointsize>11</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="title">
+              <string>Contacts Information</string>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_11">
+              <item>
+               <widget class="QTableWidget" name="contacts_table_widget">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>150</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>150</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <column>
+                 <property name="text">
+                  <string>Position</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>First Name</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Last Name</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Email</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Phone Number</string>
+                 </property>
+                </column>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="contacts_information_actions_frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <spacer name="contactsInformationActionsFrame_left_spacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>123</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="add_contact_button">
+                   <property name="font">
+                    <font>
+                     <pointsize>9</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Add Contact</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="contactsInformationActionsFrame_right_spacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>122</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="application_status_history_group_box">
+             <property name="font">
+              <font>
+               <pointsize>11</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="title">
+              <string>Application Status History</string>
+             </property>
+             <property name="flat">
+              <bool>true</bool>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <item>
+               <widget class="QTableWidget" name="application_status_history_table_widget">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>150</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>150</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <column>
+                 <property name="text">
+                  <string>Status</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Date</string>
+                 </property>
+                </column>
+               </widget>
+              </item>
+              <item>
+               <widget class="QFrame" name="application_status_history_actions_frame">
+                <property name="frameShape">
+                 <enum>QFrame::StyledPanel</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <property name="spacing">
+                  <number>10</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QComboBox" name="comboBox">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <item>
+                    <property name="text">
+                     <string>-</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Application Submitted</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Screening Interview</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Technical Interview</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Job Offer</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Application Rejected</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QDateEdit" name="dateEdit">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>75</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                   <property name="buttonSymbols">
+                    <enum>QAbstractSpinBox::NoButtons</enum>
+                   </property>
+                   <property name="minimumDateTime">
+                    <datetime>
+                     <hour>0</hour>
+                     <minute>0</minute>
+                     <second>0</second>
+                     <year>2024</year>
+                     <month>1</month>
+                     <day>1</day>
+                    </datetime>
+                   </property>
+                   <property name="maximumDate">
+                    <date>
+                     <year>2124</year>
+                     <month>12</month>
+                     <day>31</day>
+                    </date>
+                   </property>
+                   <property name="minimumDate">
+                    <date>
+                     <year>2024</year>
+                     <month>1</month>
+                     <day>1</day>
+                    </date>
+                   </property>
+                   <property name="currentSection">
+                    <enum>QDateTimeEdit::MonthSection</enum>
+                   </property>
+                   <property name="displayFormat">
+                    <string>M-d-yyyy</string>
+                   </property>
+                   <property name="calendarPopup">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="add_status_button">
+                   <property name="font">
+                    <font>
+                     <pointsize>9</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Add Status</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="error_message_frame">
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_14">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QLabel" name="error_message">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(170, 0, 0);</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="application_body_actions_frame">
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+padding: 15px 35px;
+}</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <property name="spacing">
+               <number>24</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <spacer name="applicationBodyActionsFrame_left_spacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>51</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="save_button">
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+background-color: rgb(46, 196, 89);
+color: white;
+}
+
+QPushButton:Hover {
+background-color:rgb(0, 113, 49);
+}
+
+QPushButton:Pressed {
+background-color: rgb(46, 196, 89);
+}</string>
+                </property>
+                <property name="text">
+                 <string>Save</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="clear_button">
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+background-color: rgb(196, 46, 68);
+color: white;
+}
+
+QPushButton:Hover {
+background-color: rgb(137, 28, 48);
+}
+
+QPushButton:Pressed {
+background-color: rgb(196, 46, 68);
+}</string>
+                </property>
+                <property name="text">
+                 <string>Clear</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="applicationBodyActionsFrame_right_spacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>51</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
