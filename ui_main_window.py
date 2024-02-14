@@ -393,7 +393,7 @@ class Ui_MainWindow(object):
         self.application_state_filter_combo_box.setMaximumSize(QtCore.QSize(16777215, 25))
         self.application_state_filter_combo_box.setStyleSheet("")
         self.application_state_filter_combo_box.setObjectName("application_state_filter_combo_box")
-        for i in range(52):
+        for i in range(51):
             self.application_state_filter_combo_box.addItem("")
         self.applicationStateFilterFrame_layout.addWidget(self.application_state_filter_combo_box)
         self.applicationFilterContentGroupbox_layout.addWidget(self.application_state_filter_frame)
@@ -809,57 +809,19 @@ class Ui_MainWindow(object):
         self.application_position_filter_label.setText(_translate("MainWindow", "Position:"))
         self.application_city_filter_label.setText(_translate("MainWindow", "City:"))
         self.application_state_filter_label.setText(_translate("MainWindow", "State:"))
-        self.application_state_filter_combo_box.setItemText(0, _translate("MainWindow", "-"))
-        self.application_state_filter_combo_box.setItemText(1, _translate("MainWindow", "Alabama"))
-        self.application_state_filter_combo_box.setItemText(2, _translate("MainWindow", "Alaska"))
-        self.application_state_filter_combo_box.setItemText(3, _translate("MainWindow", "Arizona"))
-        self.application_state_filter_combo_box.setItemText(4, _translate("MainWindow", "Arkansas"))
-        self.application_state_filter_combo_box.setItemText(5, _translate("MainWindow", "California"))
-        self.application_state_filter_combo_box.setItemText(6, _translate("MainWindow", "Colorado"))
-        self.application_state_filter_combo_box.setItemText(7, _translate("MainWindow", "Connecticut"))
-        self.application_state_filter_combo_box.setItemText(8, _translate("MainWindow", "Delaware"))
-        self.application_state_filter_combo_box.setItemText(9, _translate("MainWindow", "Florida"))
-        self.application_state_filter_combo_box.setItemText(10, _translate("MainWindow", "Georgia"))
-        self.application_state_filter_combo_box.setItemText(11, _translate("MainWindow", "Hawaii"))
-        self.application_state_filter_combo_box.setItemText(12, _translate("MainWindow", "Idaho"))
-        self.application_state_filter_combo_box.setItemText(13, _translate("MainWindow", "Illinois"))
-        self.application_state_filter_combo_box.setItemText(14, _translate("MainWindow", "Indiana"))
-        self.application_state_filter_combo_box.setItemText(15, _translate("MainWindow", "Iowa"))
-        self.application_state_filter_combo_box.setItemText(16, _translate("MainWindow", "Kansas"))
-        self.application_state_filter_combo_box.setItemText(17, _translate("MainWindow", "Kentucky"))
-        self.application_state_filter_combo_box.setItemText(18, _translate("MainWindow", "Louisiana"))
-        self.application_state_filter_combo_box.setItemText(19, _translate("MainWindow", "Maine"))
-        self.application_state_filter_combo_box.setItemText(20, _translate("MainWindow", "Maryland"))
-        self.application_state_filter_combo_box.setItemText(21, _translate("MainWindow", "Massachusetts"))
-        self.application_state_filter_combo_box.setItemText(22, _translate("MainWindow", "Michigan"))
-        self.application_state_filter_combo_box.setItemText(23, _translate("MainWindow", "Minnesota"))
-        self.application_state_filter_combo_box.setItemText(24, _translate("MainWindow", "Mississippi"))
-        self.application_state_filter_combo_box.setItemText(25, _translate("MainWindow", "Missouri"))
-        self.application_state_filter_combo_box.setItemText(26, _translate("MainWindow", "Montana"))
-        self.application_state_filter_combo_box.setItemText(27, _translate("MainWindow", "Nebraska"))
-        self.application_state_filter_combo_box.setItemText(28, _translate("MainWindow", "Nevada"))
-        self.application_state_filter_combo_box.setItemText(29, _translate("MainWindow", "New Hampshire"))
-        self.application_state_filter_combo_box.setItemText(30, _translate("MainWindow", "New Jersey"))
-        self.application_state_filter_combo_box.setItemText(31, _translate("MainWindow", "New Mexico"))
-        self.application_state_filter_combo_box.setItemText(32, _translate("MainWindow", "New York"))
-        self.application_state_filter_combo_box.setItemText(33, _translate("MainWindow", "North Carolina"))
-        self.application_state_filter_combo_box.setItemText(34, _translate("MainWindow", "North Dakota"))
-        self.application_state_filter_combo_box.setItemText(35, _translate("MainWindow", "Ohio"))
-        self.application_state_filter_combo_box.setItemText(36, _translate("MainWindow", "Oklahoma"))
-        self.application_state_filter_combo_box.setItemText(37, _translate("MainWindow", "Oregon"))
-        self.application_state_filter_combo_box.setItemText(38, _translate("MainWindow", "Pennsylvania"))
-        self.application_state_filter_combo_box.setItemText(39, _translate("MainWindow", "Rhode Island"))
-        self.application_state_filter_combo_box.setItemText(40, _translate("MainWindow", "South Carolina"))
-        self.application_state_filter_combo_box.setItemText(41, _translate("MainWindow", "South Dakota"))
-        self.application_state_filter_combo_box.setItemText(42, _translate("MainWindow", "Tennessee"))
-        self.application_state_filter_combo_box.setItemText(43, _translate("MainWindow", "Texas"))
-        self.application_state_filter_combo_box.setItemText(44, _translate("MainWindow", "Utah"))
-        self.application_state_filter_combo_box.setItemText(45, _translate("MainWindow", "Vermont"))
-        self.application_state_filter_combo_box.setItemText(46, _translate("MainWindow", "Virginia"))
-        self.application_state_filter_combo_box.setItemText(47, _translate("MainWindow", "Washington"))
-        self.application_state_filter_combo_box.setItemText(48, _translate("MainWindow", "West Virginia"))
-        self.application_state_filter_combo_box.setItemText(49, _translate("MainWindow", "Wisconsin"))
-        self.application_state_filter_combo_box.setItemText(50, _translate("MainWindow", "Wyoming"))
+
+        us_states = [
+            "-", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
+            "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
+            "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan",
+            "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
+            "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma",
+            "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee",
+            "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"
+        ]
+        for index in range(51):
+            self.application_state_filter_combo_box.setItemText(index, _translate("MainWindow", us_states[index]))
+
         self.application_status_filter_groupbox.setTitle(_translate("MainWindow", "Status:"))
         self.application_submitted_checkbox.setText(_translate("MainWindow", "Application Submitted"))
         self.screening_interview_checkbox.setText(_translate("MainWindow", "Screening Interview"))
