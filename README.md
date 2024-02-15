@@ -12,32 +12,23 @@ The Job Application Vault is a desktop application developed with Python, PyQT, 
 
 ## Requirements
 
-- Python (>=2.7, <3.11, !={3.0, 3.1, 3.2, 3.3})
+- Python
+    - v2.7 through v3.10 (inclusive), excluding v3.0 through v3.4 (inclusive)
+    - *Developed with v3.9.10*
 - pip
-- SQLite
-
-## Dependencies
-
-- PyQt5
-- PySide2
+- SQLite3
 
 ## Installation
 
 1. Clone the Repository: `git clone https://github.com/AdamZieman/job-application-vault.git`
 2. Install production-level dependencies: `pip install -r requirments.txt`
-3. Install developement-level dependencies: `pip install -r requirements-dev.txt`
 
 ## Usage
 
-1. Navigate to the project's source code directory: `cd job-application-vault/src`
+1. Navigate to the project's source code directory: `cd job-application-vault`
 2. Run the application: `python main.py`
 3. Use the application to add, edit, and manage your job applications
 
 ## Screenshots
 
 <!--Screenshots of the application-->
-
-## Acknowledgments
-
-- The application was built using the PyQt library for the graphical user interface.
-- SQLite was used for the database management.
