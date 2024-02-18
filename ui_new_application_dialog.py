@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QSize, QRect, QDate, QMetaObject, QCoreApplication, Qt
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import (
-    QApplication, QDialog, QWidget,
+    QWidget,
     QFrame, QGroupBox,
     QLabel, QSpacerItem,
     QPushButton, QLineEdit, QDateEdit, QComboBox, QPlainTextEdit,
