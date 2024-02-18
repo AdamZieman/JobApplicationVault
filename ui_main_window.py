@@ -1,16 +1,18 @@
+import sqlite3
+
 from PyQt5.QtCore import QSize, QMetaObject, QCoreApplication, Qt
 from PyQt5.QtGui import QFont, QColor
 from PyQt5.QtWidgets import (
-    QWidget, QStackedWidget, QTableWidget, QTableWidgetItem,
+    QDialog, QWidget, QStackedWidget, QTableWidget, QTableWidgetItem,
     QFrame, QGroupBox,
     QLabel, QSpacerItem,
     QPushButton, QLineEdit, QComboBox, QCheckBox,
-    QHBoxLayout, QVBoxLayout,
-    QSizePolicy,
+    QHBoxLayout, QVBoxLayout, QSizePolicy,
     QAbstractScrollArea, QAbstractItemView
     )
 
-import sqlite3
+from ui_new_application_dialog import *
+from ui_view_application_dialog import *
 
 
 class Ui_MainWindow(object):
@@ -612,7 +614,9 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.new_application_button.setFont(font)
+        self.new_application_button.clicked.connect(self.openNewApplication)
         self.new_application_button.setObjectName("new_application_button")
+
         self.applicationContentActionsFrame_layout.addWidget(self.new_application_button)
 
         # view application button
@@ -623,6 +627,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.view_application_button.setFont(font)
         self.view_application_button.setObjectName("view_application_button")
+        self.view_application_button.clicked.connect(self.openViewApplication)
         self.applicationContentActionsFrame_layout.addWidget(self.view_application_button)
 
         # application content actions frame right spacer
@@ -1001,3 +1006,17 @@ class Ui_MainWindow(object):
 
         # Close the database connection
         connection.close()
+    
+    def openNewApplication(self):
+        self.dialog = QDialog()
+        self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
+        ui_app_dialog = Ui_NewApplication_Dialog()
+        ui_app_dialog.setupUi(self.dialog)
+        self.dialog.show()
+
+    def openViewApplication(self):
+        self.dialog = QDialog()
+        self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
+        ui_app_dialog = Ui_ViewApplication_Dialog()
+        ui_app_dialog.setupUi(self.dialog)
+        self.dialog.show()
