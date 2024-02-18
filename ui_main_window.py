@@ -17,6 +17,7 @@ from ui_view_application_dialog import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
+        print("Setting up Ui_MainWindow.")
         # main window
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1203, 878)
@@ -1008,6 +1009,7 @@ class Ui_MainWindow(object):
         connection.close()
     
     def openNewApplication(self):
+        print("Clicked New Application button.")
         self.dialog = QDialog()
         self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         ui_app_dialog = Ui_NewApplication_Dialog()
@@ -1015,6 +1017,7 @@ class Ui_MainWindow(object):
         self.dialog.show()
 
     def openViewApplication(self):
+        print("Clicked View Application button.")
         self.dialog = QDialog()
         self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         ui_app_dialog = Ui_ViewApplication_Dialog()

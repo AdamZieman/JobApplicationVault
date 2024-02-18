@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import (
 
 class Ui_NewApplication_Dialog(object):
     def setupUi(self, dialog):
+        print("Setting up Ui_NewApplication_Dialog")
         # dialog window
         dialog.setObjectName("Dialog")
         dialog.resize(500, 800)

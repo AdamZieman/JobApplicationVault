@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from ui_main_window import *
 
 if __name__ == "__main__":
+    print("Executing Job Application Vault")
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
 
