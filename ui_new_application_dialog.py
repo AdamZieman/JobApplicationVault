@@ -1,5 +1,3 @@
-import sqlite3
-
 from PyQt5.QtCore import QSize, QRect, QDate, QMetaObject, QCoreApplication, Qt
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import (

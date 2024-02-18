@@ -1012,9 +1012,20 @@ class Ui_MainWindow(object):
         print("Clicked New Application button.")
         self.dialog = QDialog()
         self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
-        ui_app_dialog = Ui_NewApplication_Dialog()
-        ui_app_dialog.setupUi(self.dialog)
+        self.ui_app_dialog = Ui_NewApplication_Dialog()
+        self.ui_app_dialog.setupUi(self.dialog)
+        self.ui_app_dialog.create_button.clicked.connect(self.on_create_button_clicked)
         self.dialog.show()
+
+    def on_create_button_clicked(self):
+        print("Clicked Create button")
+        company = self.ui_app_dialog.company_line_edit.text()
+        city = self.ui_app_dialog.city_line_edit.text()
+        state = self.ui_app_dialog.state_combo_box.currentText()
+
+        print("Company:", company)
+        print("City:", city)
+        print("State:", state)
 
     def openViewApplication(self):
         print("Clicked View Application button.")
