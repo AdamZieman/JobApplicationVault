@@ -1028,6 +1028,23 @@ class Ui_MainWindow(object):
         job_description = self.ui_app_dialog.job_description_plain_text_edit.toPlainText()
         application_date = self.ui_app_dialog.application_status_date_edit.date()
 
+        # validate inputs
+        if len(company) == 0:
+            self.ui_app_dialog.error_label.setText("Missing a company!")
+        elif len(city) == 0:
+            self.ui_app_dialog.error_label.setText("Missing a city!")
+        elif state == "-":
+            self.ui_app_dialog.error_label.setText("Missing a state!")
+        elif len(position) == 0:
+            self.ui_app_dialog.error_label.setText("Missing a position!")
+        elif work_style == "-":
+            self.ui_app_dialog.error_label.setText("Missing a work-style!")
+        elif employment_status == "-":
+            self.ui_app_dialog.error_label.setText("Missing an employment status!")
+        elif application_date.toString('yyyy-MM-dd') == "2024-01-01":
+            self.ui_app_dialog.error_label.setText("Missing a date!")
+        else:
+            self.dialog.accept()
 
         print("Company:", company)
         print("City:", city)
@@ -1037,8 +1054,6 @@ class Ui_MainWindow(object):
         print("Employment Status:", employment_status)
         print("Job Description:", job_description)
         print("Application Date:", application_date.toString('yyyy-MM-dd'))
-
-        self.dialog.accept()
 
     def openViewApplication(self):
         print("Clicked View Application button.")

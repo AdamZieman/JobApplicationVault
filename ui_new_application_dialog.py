@@ -495,5 +495,5 @@ class Ui_NewApplication_Dialog(object):
         self.job_description_label.setText(_translate("Dialog", "Job Description:"))
         self.application_status_history_group_box.setTitle(_translate("Dialog", "Application Status History"))
         self.application_status_line_edit.setText(_translate("Dialog", "Application Submitted"))
-        self.error_label.setText(_translate("Dialog", "SAMPLE ERROR MESSAGE"))
+        self.error_label.setText(_translate("Dialog", ""))
         self.create_button.setText(_translate("Dialog", "Create"))
