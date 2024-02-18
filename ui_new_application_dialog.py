@@ -17,10 +17,10 @@ class Ui_NewApplication_Dialog(object):
         dialog.resize(500, 800)
         dialog.setMinimumSize(QSize(500, 400))
         dialog.setMaximumSize(QSize(500, 800))
-        self.verticalLayout_19 = QVBoxLayout(dialog)
-        self.verticalLayout_19.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_19.setSpacing(0)
-        self.verticalLayout_19.setObjectName("verticalLayout_19")
+        self.dialogWindowLayout = QVBoxLayout(dialog)
+        self.dialogWindowLayout.setContentsMargins(0, 0, 0, 0)
+        self.dialogWindowLayout.setSpacing(0)
+        self.dialogWindowLayout.setObjectName("dialogWindowLayout")
 
         # scroll area
         self.scrollArea = QScrollArea(dialog)
@@ -30,10 +30,10 @@ class Ui_NewApplication_Dialog(object):
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setGeometry(QRect(0, -177, 481, 975))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        self.verticalLayout_22 = QVBoxLayout(self.scrollAreaWidgetContents)
-        self.verticalLayout_22.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_22.setSpacing(0)
-        self.verticalLayout_22.setObjectName("verticalLayout_22")
+        self.scrollAreaLayout = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.scrollAreaLayout.setContentsMargins(0, 0, 0, 0)
+        self.scrollAreaLayout.setSpacing(0)
+        self.scrollAreaLayout.setObjectName("scrollAreaLayout")
 
 
 
@@ -67,7 +67,7 @@ class Ui_NewApplication_Dialog(object):
         self.title_label.setAlignment(Qt.AlignCenter)
         self.title_label.setObjectName("title_label")
         self.verticalLayout.addWidget(self.title_label)
-        self.verticalLayout_22.addWidget(self.title_frame)
+        self.scrollAreaLayout.addWidget(self.title_frame)
 
 
 
@@ -92,10 +92,10 @@ class Ui_NewApplication_Dialog(object):
         self.body_frame.setFrameShape(QFrame.StyledPanel)
         self.body_frame.setFrameShadow(QFrame.Raised)
         self.body_frame.setObjectName("body_frame")
-        self.verticalLayout_23 = QVBoxLayout(self.body_frame)
-        self.verticalLayout_23.setContentsMargins(24, 24, 24, 24)
-        self.verticalLayout_23.setSpacing(24)
-        self.verticalLayout_23.setObjectName("verticalLayout_23")
+        self.bodyFrameLayout = QVBoxLayout(self.body_frame)
+        self.bodyFrameLayout.setContentsMargins(24, 24, 24, 24)
+        self.bodyFrameLayout.setSpacing(24)
+        self.bodyFrameLayout.setObjectName("bodyFrameLayout")
 
 
 
@@ -110,66 +110,66 @@ class Ui_NewApplication_Dialog(object):
         self.company_details_group_box.setFont(font)
         self.company_details_group_box.setFlat(True)
         self.company_details_group_box.setObjectName("company_details_group_box")
-        self.verticalLayout_5 = QVBoxLayout(self.company_details_group_box)
-        self.verticalLayout_5.setObjectName("verticalLayout_5")
+        self.companyDetailsGroupBoxLayout = QVBoxLayout(self.company_details_group_box)
+        self.companyDetailsGroupBoxLayout.setObjectName("companyDetailsGroupBoxLayout")
 
         # company frame
         self.company_frame = QFrame(self.company_details_group_box)
         self.company_frame.setFrameShape(QFrame.StyledPanel)
         self.company_frame.setFrameShadow(QFrame.Raised)
         self.company_frame.setObjectName("company_frame")
-        self.verticalLayout_2 = QVBoxLayout(self.company_frame)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.companyFrameLayout = QVBoxLayout(self.company_frame)
+        self.companyFrameLayout.setContentsMargins(0, 0, 0, 0)
+        self.companyFrameLayout.setObjectName("companyFrameLayout")
 
         # company label
         self.company_label = QLabel(self.company_frame)
         self.company_label.setObjectName("company_label")
-        self.verticalLayout_2.addWidget(self.company_label)
+        self.companyFrameLayout.addWidget(self.company_label)
 
         # company line edit
         self.company_line_edit = QLineEdit(self.company_frame)
         self.company_line_edit.setMinimumSize(QSize(0, 25))
         self.company_line_edit.setMaximumSize(QSize(16777215, 25))
         self.company_line_edit.setObjectName("company_line_edit")
-        self.verticalLayout_2.addWidget(self.company_line_edit)
-        self.verticalLayout_5.addWidget(self.company_frame)
+        self.companyFrameLayout.addWidget(self.company_line_edit)
+        self.companyDetailsGroupBoxLayout.addWidget(self.company_frame)
 
         # city frame
         self.city_frame = QFrame(self.company_details_group_box)
         self.city_frame.setFrameShape(QFrame.StyledPanel)
         self.city_frame.setFrameShadow(QFrame.Raised)
         self.city_frame.setObjectName("city_frame")
-        self.verticalLayout_3 = QVBoxLayout(self.city_frame)
-        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.cityFrameLayout = QVBoxLayout(self.city_frame)
+        self.cityFrameLayout.setContentsMargins(0, 0, 0, 0)
+        self.cityFrameLayout.setObjectName("cityFrameLayout")
 
         # city label
         self.city_label = QLabel(self.city_frame)
         self.city_label.setObjectName("city_label")
-        self.verticalLayout_3.addWidget(self.city_label)
+        self.cityFrameLayout.addWidget(self.city_label)
 
         # city line edit
         self.city_line_edit = QLineEdit(self.city_frame)
         self.city_line_edit.setMinimumSize(QSize(0, 25))
         self.city_line_edit.setMaximumSize(QSize(16777215, 25))
         self.city_line_edit.setObjectName("city_line_edit")
-        self.verticalLayout_3.addWidget(self.city_line_edit)
-        self.verticalLayout_5.addWidget(self.city_frame)
+        self.cityFrameLayout.addWidget(self.city_line_edit)
+        self.companyDetailsGroupBoxLayout.addWidget(self.city_frame)
 
         # state frame
         self.state_frame = QFrame(self.company_details_group_box)
         self.state_frame.setFrameShape(QFrame.StyledPanel)
         self.state_frame.setFrameShadow(QFrame.Raised)
         self.state_frame.setObjectName("state_frame")
-        self.verticalLayout_4 = QVBoxLayout(self.state_frame)
-        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.stateFrameLayout = QVBoxLayout(self.state_frame)
+        self.stateFrameLayout.setContentsMargins(0, 0, 0, 0)
+        self.stateFrameLayout.setObjectName("stateFrameLayout")
 
         # state label
         self.state_label = QLabel(self.state_frame)
         self.state_label.setObjectName("state_label")
-        self.verticalLayout_4.addWidget(self.state_label)
+        self.stateFrameLayout.addWidget(self.state_label)
 
         # state combo box
         self.state_combo_box = QComboBox(self.state_frame)
@@ -178,9 +178,9 @@ class Ui_NewApplication_Dialog(object):
         self.state_combo_box.setObjectName("state_combo_box")
         for _ in range(51):
             self.state_combo_box.addItem("")
-        self.verticalLayout_4.addWidget(self.state_combo_box)
-        self.verticalLayout_5.addWidget(self.state_frame)
-        self.verticalLayout_23.addWidget(self.company_details_group_box)
+        self.stateFrameLayout.addWidget(self.state_combo_box)
+        self.companyDetailsGroupBoxLayout.addWidget(self.state_frame)
+        self.bodyFrameLayout.addWidget(self.company_details_group_box)
 
 
 
@@ -195,42 +195,42 @@ class Ui_NewApplication_Dialog(object):
         self.position_details_group_box.setFont(font)
         self.position_details_group_box.setFlat(True)
         self.position_details_group_box.setObjectName("position_details_group_box")
-        self.verticalLayout_10 = QVBoxLayout(self.position_details_group_box)
-        self.verticalLayout_10.setObjectName("verticalLayout_10")
+        self.positionGroupBoxLayout = QVBoxLayout(self.position_details_group_box)
+        self.positionGroupBoxLayout.setObjectName("positionGroupBoxLayout")
 
         # position frame
         self.position_frame = QFrame(self.position_details_group_box)
         self.position_frame.setFrameShape(QFrame.StyledPanel)
         self.position_frame.setFrameShadow(QFrame.Raised)
         self.position_frame.setObjectName("position_frame")
-        self.verticalLayout_6 = QVBoxLayout(self.position_frame)
-        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.positionFrameLayout = QVBoxLayout(self.position_frame)
+        self.positionFrameLayout.setContentsMargins(0, 0, 0, 0)
+        self.positionFrameLayout.setObjectName("positionFrameLayout")
 
         # position label
         self.position_label = QLabel(self.position_frame)
         self.position_label.setObjectName("position_label")
-        self.verticalLayout_6.addWidget(self.position_label)
+        self.positionFrameLayout.addWidget(self.position_label)
         self.position_line_edit = QLineEdit(self.position_frame)
         self.position_line_edit.setMinimumSize(QSize(0, 25))
         self.position_line_edit.setMaximumSize(QSize(16777215, 25))
         self.position_line_edit.setObjectName("position_line_edit")
-        self.verticalLayout_6.addWidget(self.position_line_edit)
-        self.verticalLayout_10.addWidget(self.position_frame)
+        self.positionFrameLayout.addWidget(self.position_line_edit)
+        self.positionGroupBoxLayout.addWidget(self.position_frame)
 
         # work style frame
         self.work_style_frame = QFrame(self.position_details_group_box)
         self.work_style_frame.setFrameShape(QFrame.StyledPanel)
         self.work_style_frame.setFrameShadow(QFrame.Raised)
         self.work_style_frame.setObjectName("work_style_frame")
-        self.verticalLayout_7 = QVBoxLayout(self.work_style_frame)
-        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_7.setObjectName("verticalLayout_7")
+        self.workStyleFrameLayout = QVBoxLayout(self.work_style_frame)
+        self.workStyleFrameLayout.setContentsMargins(0, 0, 0, 0)
+        self.workStyleFrameLayout.setObjectName("workStyleFrameLayout")
 
         # work style label
         self.work_style_label = QLabel(self.work_style_frame)
         self.work_style_label.setObjectName("work_style_label")
-        self.verticalLayout_7.addWidget(self.work_style_label)
+        self.workStyleFrameLayout.addWidget(self.work_style_label)
 
         # work style combo box
         self.work_style_combo_box = QComboBox(self.work_style_frame)
@@ -239,22 +239,22 @@ class Ui_NewApplication_Dialog(object):
         self.work_style_combo_box.setObjectName("work_style_combo_box")
         for _ in range(4):
                 self.work_style_combo_box.addItem("")
-        self.verticalLayout_7.addWidget(self.work_style_combo_box)
-        self.verticalLayout_10.addWidget(self.work_style_frame)
+        self.workStyleFrameLayout.addWidget(self.work_style_combo_box)
+        self.positionGroupBoxLayout.addWidget(self.work_style_frame)
 
         # employment status frame
         self.employment_status_frame = QFrame(self.position_details_group_box)
         self.employment_status_frame.setFrameShape(QFrame.StyledPanel)
         self.employment_status_frame.setFrameShadow(QFrame.Raised)
         self.employment_status_frame.setObjectName("employment_status_frame")
-        self.verticalLayout_8 = QVBoxLayout(self.employment_status_frame)
-        self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_8.setObjectName("verticalLayout_8")
+        self.employmentStatusFrameLayout = QVBoxLayout(self.employment_status_frame)
+        self.employmentStatusFrameLayout.setContentsMargins(0, 0, 0, 0)
+        self.employmentStatusFrameLayout.setObjectName("employmentStatusFrameLayout")
 
         # employment status label
         self.employment_status_label = QLabel(self.employment_status_frame)
         self.employment_status_label.setObjectName("employment_status_label")
-        self.verticalLayout_8.addWidget(self.employment_status_label)
+        self.employmentStatusFrameLayout.addWidget(self.employment_status_label)
 
         # employment status combo box
         self.employment_status_combo_box = QComboBox(self.employment_status_frame)
@@ -263,22 +263,22 @@ class Ui_NewApplication_Dialog(object):
         self.employment_status_combo_box.setObjectName("employment_status_combo_box")
         for _ in range(7):
                 self.employment_status_combo_box.addItem("")
-        self.verticalLayout_8.addWidget(self.employment_status_combo_box)
-        self.verticalLayout_10.addWidget(self.employment_status_frame)
+        self.employmentStatusFrameLayout.addWidget(self.employment_status_combo_box)
+        self.positionGroupBoxLayout.addWidget(self.employment_status_frame)
 
         # job description frame
         self.job_description_frame = QFrame(self.position_details_group_box)
         self.job_description_frame.setFrameShape(QFrame.StyledPanel)
         self.job_description_frame.setFrameShadow(QFrame.Raised)
         self.job_description_frame.setObjectName("job_description_frame")
-        self.verticalLayout_9 = QVBoxLayout(self.job_description_frame)
-        self.verticalLayout_9.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        self.jobDescriptionFrameLayout = QVBoxLayout(self.job_description_frame)
+        self.jobDescriptionFrameLayout.setContentsMargins(0, 0, 0, 0)
+        self.jobDescriptionFrameLayout.setObjectName("jobDescriptionFrameLayout")
 
         # job description label
         self.job_description_label = QLabel(self.job_description_frame)
         self.job_description_label.setObjectName("job_description_label")
-        self.verticalLayout_9.addWidget(self.job_description_label)
+        self.jobDescriptionFrameLayout.addWidget(self.job_description_label)
 
         # job description plain text edit
         self.job_description_plain_text_edit = QPlainTextEdit(self.job_description_frame)
@@ -288,9 +288,9 @@ class Ui_NewApplication_Dialog(object):
         font.setPointSize(10)
         self.job_description_plain_text_edit.setFont(font)
         self.job_description_plain_text_edit.setObjectName("job_description_plain_text_edit")
-        self.verticalLayout_9.addWidget(self.job_description_plain_text_edit)
-        self.verticalLayout_10.addWidget(self.job_description_frame)
-        self.verticalLayout_23.addWidget(self.position_details_group_box)
+        self.jobDescriptionFrameLayout.addWidget(self.job_description_plain_text_edit)
+        self.positionGroupBoxLayout.addWidget(self.job_description_frame)
+        self.bodyFrameLayout.addWidget(self.position_details_group_box)
 
 
 
@@ -305,8 +305,8 @@ class Ui_NewApplication_Dialog(object):
         self.application_status_history_group_box.setFont(font)
         self.application_status_history_group_box.setFlat(True)
         self.application_status_history_group_box.setObjectName("application_status_history_group_box")
-        self.verticalLayout_20 = QVBoxLayout(self.application_status_history_group_box)
-        self.verticalLayout_20.setObjectName("verticalLayout_20")
+        self.companyFrameLayout0 = QVBoxLayout(self.application_status_history_group_box)
+        self.companyFrameLayout0.setObjectName("companyFrameLayout0")
 
         # application status history actions frame
         self.application_status_history_actions_frame = QFrame(self.application_status_history_group_box)
@@ -328,9 +328,9 @@ class Ui_NewApplication_Dialog(object):
         self.application_status_history_actions_frame.setFrameShape(QFrame.StyledPanel)
         self.application_status_history_actions_frame.setFrameShadow(QFrame.Raised)
         self.application_status_history_actions_frame.setObjectName("application_status_history_actions_frame")
-        self.horizontalLayout_5 = QHBoxLayout(self.application_status_history_actions_frame)
-        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
+        self.applicationStatusHistoryFrameLayout = QHBoxLayout(self.application_status_history_actions_frame)
+        self.applicationStatusHistoryFrameLayout.setContentsMargins(0, 0, 0, 0)
+        self.applicationStatusHistoryFrameLayout.setObjectName("applicationStatusHistoryFrameLayout")
 
         # application status line edit
         self.application_status_line_edit = QLineEdit(self.application_status_history_actions_frame)
@@ -338,7 +338,7 @@ class Ui_NewApplication_Dialog(object):
         self.application_status_line_edit.setMaximumSize(QSize(200, 25))
         self.application_status_line_edit.setReadOnly(True)
         self.application_status_line_edit.setObjectName("application_status_line_edit")
-        self.horizontalLayout_5.addWidget(self.application_status_line_edit)
+        self.applicationStatusHistoryFrameLayout.addWidget(self.application_status_line_edit)
 
         # application status date edit
         self.application_status_date_edit = QDateEdit(self.application_status_history_actions_frame)
@@ -348,9 +348,9 @@ class Ui_NewApplication_Dialog(object):
         self.application_status_date_edit.setMinimumDate(QDate(2024, 1, 1))
         self.application_status_date_edit.setCalendarPopup(True)
         self.application_status_date_edit.setObjectName("application_status_date_edit")
-        self.horizontalLayout_5.addWidget(self.application_status_date_edit)
-        self.verticalLayout_20.addWidget(self.application_status_history_actions_frame)
-        self.verticalLayout_23.addWidget(self.application_status_history_group_box)
+        self.applicationStatusHistoryFrameLayout.addWidget(self.application_status_date_edit)
+        self.companyFrameLayout0.addWidget(self.application_status_history_actions_frame)
+        self.bodyFrameLayout.addWidget(self.application_status_history_group_box)
 
 
 
@@ -361,10 +361,10 @@ class Ui_NewApplication_Dialog(object):
         self.actions_outter_frame.setFrameShape(QFrame.StyledPanel)
         self.actions_outter_frame.setFrameShadow(QFrame.Raised)
         self.actions_outter_frame.setObjectName("actions_outter_frame")
-        self.verticalLayout_21 = QVBoxLayout(self.actions_outter_frame)
-        self.verticalLayout_21.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_21.setSpacing(0)
-        self.verticalLayout_21.setObjectName("verticalLayout_21")
+        self.actionsOutterFrameLayout = QVBoxLayout(self.actions_outter_frame)
+        self.actionsOutterFrameLayout.setContentsMargins(0, 0, 0, 0)
+        self.actionsOutterFrameLayout.setSpacing(0)
+        self.actionsOutterFrameLayout.setObjectName("actionsOutterFrameLayout")
 
         # error frame
         self.error_frame = QFrame(self.actions_outter_frame)
@@ -397,7 +397,7 @@ class Ui_NewApplication_Dialog(object):
         self.error_label.setAlignment(Qt.AlignCenter)
         self.error_label.setObjectName("error_label")
         self.errorFrame_layout.addWidget(self.error_label)
-        self.verticalLayout_21.addWidget(self.error_frame)
+        self.actionsOutterFrameLayout.addWidget(self.error_frame)
 
         # action frame
         self.actions_frame = QFrame(self.actions_outter_frame)
@@ -442,9 +442,9 @@ class Ui_NewApplication_Dialog(object):
         # spacer item
         spacerItem1 = QSpacerItem(177, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         self.actionsFrame_layout.addItem(spacerItem1)
-        self.verticalLayout_21.addWidget(self.actions_frame)
-        self.verticalLayout_23.addWidget(self.actions_outter_frame)
-        self.verticalLayout_22.addWidget(self.body_frame)
+        self.actionsOutterFrameLayout.addWidget(self.actions_frame)
+        self.bodyFrameLayout.addWidget(self.actions_outter_frame)
+        self.scrollAreaLayout.addWidget(self.body_frame)
 
 
 
@@ -452,7 +452,7 @@ class Ui_NewApplication_Dialog(object):
 
         # scroll area
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
-        self.verticalLayout_19.addWidget(self.scrollArea)
+        self.dialogWindowLayout.addWidget(self.scrollArea)
 
         self.retranslateUi(dialog)
         QMetaObject.connectSlotsByName(dialog)
