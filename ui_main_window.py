@@ -1022,10 +1022,23 @@ class Ui_MainWindow(object):
         company = self.ui_app_dialog.company_line_edit.text()
         city = self.ui_app_dialog.city_line_edit.text()
         state = self.ui_app_dialog.state_combo_box.currentText()
+        position = self.ui_app_dialog.position_line_edit.text()
+        work_style = self.ui_app_dialog.work_style_combo_box.currentText()
+        employment_status = self.ui_app_dialog.employment_status_combo_box.currentText()
+        job_description = self.ui_app_dialog.job_description_plain_text_edit.toPlainText()
+        application_date = self.ui_app_dialog.application_status_date_edit.date()
+
 
         print("Company:", company)
         print("City:", city)
         print("State:", state)
+        print("Position:", position)
+        print("Work Style:", work_style)
+        print("Employment Status:", employment_status)
+        print("Job Description:", job_description)
+        print("Application Date:", application_date.toString('yyyy-MM-dd'))
+
+        self.dialog.accept()
 
     def openViewApplication(self):
         print("Clicked View Application button.")
