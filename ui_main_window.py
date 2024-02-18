@@ -17,7 +17,6 @@ from ui_view_application_dialog import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        print("Setting up Ui_MainWindow.")
         # main window
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1203, 878)
@@ -1009,7 +1008,6 @@ class Ui_MainWindow(object):
         connection.close()
     
     def openNewApplication(self):
-        print("Clicked New Application button.")
         self.dialog = QDialog()
         self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.ui_app_dialog = Ui_NewApplication_Dialog()
@@ -1018,7 +1016,6 @@ class Ui_MainWindow(object):
         self.dialog.show()
 
     def on_create_button_clicked(self):
-        print("Clicked Create button")
         company = self.ui_app_dialog.company_line_edit.text()
         city = self.ui_app_dialog.city_line_edit.text()
         state = self.ui_app_dialog.state_combo_box.currentText()
@@ -1028,7 +1025,7 @@ class Ui_MainWindow(object):
         job_description = self.ui_app_dialog.job_description_plain_text_edit.toPlainText()
         application_date = self.ui_app_dialog.application_status_date_edit.date()
 
-        # validate inputs
+        # validate required inputs
         if len(company) == 0:
             self.ui_app_dialog.error_label.setText("Missing a company!")
         elif len(city) == 0:
@@ -1044,16 +1041,30 @@ class Ui_MainWindow(object):
         elif application_date.toString('yyyy-MM-dd') == "2024-01-01":
             self.ui_app_dialog.error_label.setText("Missing a date!")
         else:
-            self.dialog.accept()
+            # Connect to SQLite database
+            conn = sqlite3.connect('data/JobApplicationVault_database.db')
+            cursor = conn.cursor()
 
-        print("Company:", company)
-        print("City:", city)
-        print("State:", state)
-        print("Position:", position)
-        print("Work Style:", work_style)
-        print("Employment Status:", employment_status)
-        print("Job Description:", job_description)
-        print("Application Date:", application_date.toString('yyyy-MM-dd'))
+            # Insert data into job_applications table
+            cursor.execute('''INSERT INTO job_applications (company, position, work_style, employment_status, city, state, job_description)
+                            VALUES (?, ?, ?, ?, ?, ?, ?)''', (company, position, work_style, employment_status, city, state, job_description))
+
+            # Get the last inserted row id (job_application_id) for referencing in application_statuses table
+            job_application_id = cursor.lastrowid
+
+            # Insert data into application_statuses table
+            cursor.execute('''INSERT INTO application_statuses (job_application_id, status, julian_date)
+                            VALUES (?, ?, ?)''', (job_application_id, 'Application Submitted', application_date.toJulianDay()))
+
+            # Commit the changes and close the connection
+            conn.commit()
+            conn.close()
+
+            # Update the Application's table
+            self.populate_applications_table()
+
+            # Close the dialog window
+            self.dialog.accept()
 
     def openViewApplication(self):
         print("Clicked View Application button.")
