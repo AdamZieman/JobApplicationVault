@@ -1075,6 +1075,7 @@ class Ui_MainWindow(object):
             self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
             self.ui_app_dialog = Ui_ViewApplication_Dialog()
             self.ui_app_dialog.setupUi(self.dialog)
+            self.ui_app_dialog.add_skill_button.clicked.connect(lambda: self.onAddSkillsButtonClicked(job_application_id))
             self.dialog.show()
 
             # Retrieve data from the selected row
@@ -1166,7 +1167,79 @@ class Ui_MainWindow(object):
                     for col, value in enumerate(status_data):
                         self.ui_app_dialog.application_status_history_table_widget.setItem(row, col, QTableWidgetItem(str(value)))
 
+    def onAddSkillsButtonClicked(self, job_application_id):
+        skill_value = self.ui_app_dialog.add_skill_line_edit.text()
+        if len(skill_value) == 0:
+            # User inputted a value
+            self.ui_app_dialog.skill_error_label.setText("Missing a skill!")
+        else:
+            # Connect to SQLite database
+            conn = sqlite3.connect('data/JobApplicationVault_database.db')
+            cursor = conn.cursor()
 
-    def onViewApplicationButtonClicked(self):
-        pass
+            try:
+                # Check if the skill already exists in the technical_skills table
+                existing_skill_query = cursor.execute('''
+                    SELECT technical_skill_id FROM technical_skills WHERE skill_name = ?;
+                ''', (skill_value,))
+                
+                existing_skill_result = existing_skill_query.fetchone()
+
+                if existing_skill_result:
+                    # Skill already exists, get the skill_id
+                    skill_id = existing_skill_result[0]
+                else:
+                    # Skill doesn't exist, insert into technical_skills table
+                    cursor.execute('''
+                        INSERT INTO technical_skills (skill_name, occurrences) VALUES (?, 1);
+                    ''', (skill_value,))
+                    skill_id = cursor.lastrowid
+
+                # Link the skill to the current job application
+                cursor.execute('''
+                    INSERT INTO job_application_technical_skills (job_application_id, technical_skill_id)
+                    VALUES (?, ?);
+                ''', (job_application_id, skill_id))
+
+                # Commit the changes
+                conn.commit()
+
+                # Close the connection
+                conn.close()
+
+                # Clear the error label
+                self.ui_app_dialog.skill_error_label.clear()
+
+                # Update skills_table
+                self.updateSkillsTable(job_application_id)
+
+            except Exception:
+                self.ui_app_dialog.skill_error_label.setText(f"{skill_value} skill already exists!")
+                conn.rollback()
+
+            finally:
+                conn.close()
+
+    def updateSkillsTable(self, job_application_id):
+        # Update the skills_table with the latest data from the database
+        conn = sqlite3.connect('data/JobApplicationVault_database.db')
+        cursor = conn.cursor()
+
+        # Retrieve technical skills
+        technical_skills_query = cursor.execute('''
+            SELECT skill_name FROM technical_skills
+            INNER JOIN job_application_technical_skills ON
+            technical_skills.technical_skill_id = job_application_technical_skills.technical_skill_id
+            WHERE job_application_technical_skills.job_application_id = ?;
+        ''', (job_application_id,))
+
+        technical_skills = [row[0] for row in technical_skills_query.fetchall()]
+
+        # Close the connection
+        conn.close()
+
+        # Update PyQt5 container
+        self.ui_app_dialog.skills_table.setRowCount(len(technical_skills))
+        for row, skill in enumerate(technical_skills):
+            self.ui_app_dialog.skills_table.setItem(row, 0, QTableWidgetItem(skill))
         

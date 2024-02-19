@@ -364,7 +364,7 @@ class Ui_ViewApplication_Dialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.skill_error_label.setFont(font)
-        self.skill_error_label.setAlignment(Qt.AlignCenter)
+        self.skill_error_label.setAlignment(Qt.AlignRight)
         self.skill_error_label.setObjectName("skill_error_label")
         self.skillErrorFrameLayout.addWidget(self.skill_error_label)
         self.skillActionOutterFrameLayout.addWidget(self.skill_error_frame)
@@ -845,7 +845,7 @@ class Ui_ViewApplication_Dialog(object):
         self.skill_label.setText(_translate("Dialog", "Skills:"))
         item = self.skills_table.horizontalHeaderItem(0)
         item.setText(_translate("Dialog", "Skill"))
-        self.skill_error_label.setText(_translate("Dialog", "SAMPLE ERROR MESSAGE"))
+        self.skill_error_label.setText(_translate("Dialog", ""))
         self.add_skill_button.setText(_translate("Dialog", "Add"))
         self.contact_information_group_box.setTitle(_translate("Dialog", "Contact Information"))
 
