@@ -1070,15 +1070,103 @@ class Ui_MainWindow(object):
         selected_row = self.appications_table_widget.currentRow()
         # Check if a valid row is selected
         if selected_row >= 0:
-            # Retrieve data from the selected row
-            selected_data = [self.appications_table_widget.item(selected_row, col).text() for col in range(self.appications_table_widget.columnCount())]
-            print(selected_data)
-
+            # Show the dialog
             self.dialog = QDialog()
             self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
             self.ui_app_dialog = Ui_ViewApplication_Dialog()
             self.ui_app_dialog.setupUi(self.dialog)
             self.dialog.show()
 
+            # Retrieve data from the selected row
+            company, position, location, application_status, application_date = [self.appications_table_widget.item(selected_row, col).text() for col in range(self.appications_table_widget.columnCount())]
+            city, state = location.split(", ")
 
+            # Connect to SQLite database
+            conn = sqlite3.connect('data/JobApplicationVault_database.db')
+            cursor = conn.cursor()
+
+            # Select the primary key
+            job_application_id_query = cursor.execute('''
+                    SELECT job_application_id
+                    FROM job_applications
+                    WHERE company = ? AND position = ? AND city = ? AND state = ?;
+                ''', (company, position, city, state)
+            )
+
+            # Fetch the result
+            job_application_id_result = job_application_id_query.fetchone()
+
+            if job_application_id_result:
+                job_application_id = job_application_id_result[0]
+
+                # Connect to SQLite database
+                conn = sqlite3.connect('data/JobApplicationVault_database.db')
+                cursor = conn.cursor()
+
+                # Retrieve job application details
+                job_application_query = cursor.execute('''
+                    SELECT * FROM job_applications WHERE job_application_id = ?;
+                ''', (job_application_id,))
+
+                job_application_data = job_application_query.fetchone()
+
+                # Retrieve technical skills
+                technical_skills_query = cursor.execute('''
+                    SELECT skill_name FROM technical_skills
+                    INNER JOIN job_application_technical_skills ON
+                    technical_skills.technical_skill_id = job_application_technical_skills.technical_skill_id
+                    WHERE job_application_technical_skills.job_application_id = ?;
+                ''', (job_application_id,))
+
+                technical_skills = [row[0] for row in technical_skills_query.fetchall()]
+
+                # Retrieve contacts
+                contacts_query = cursor.execute('''
+                    SELECT position, first_name, last_name, email, phone FROM contacts
+                    WHERE job_application_id = ?;
+                ''', (job_application_id,))
+
+                contacts_data = contacts_query.fetchall()
+
+                # Retrieve application status history
+                status_history_query = cursor.execute('''
+                    SELECT status, date(julian_date) FROM application_statuses
+                    WHERE job_application_id = ? ORDER BY julian_date DESC;
+                ''', (job_application_id,))
+
+                status_history_data = status_history_query.fetchall()
+
+                # Commit the changes and close the connection
+                conn.commit()
+                conn.close()
+
+                # Populate PyQt5 containers
+                self.ui_app_dialog.company_line_edit.setText(job_application_data[1])
+                self.ui_app_dialog.city_line_edit.setText(job_application_data[5])
+                self.ui_app_dialog.state_line_edit.setText(job_application_data[6])
+                self.ui_app_dialog.position_line_edit.setText(job_application_data[2])
+                self.ui_app_dialog.work_style_line_edit.setText(job_application_data[3])
+                self.ui_app_dialog.employment_status_line_edit.setText(job_application_data[4])
+                self.ui_app_dialog.job_description_plain_text_edit.setPlainText(job_application_data[7])
+
+                # Populate skills_table
+                self.ui_app_dialog.skills_table.setRowCount(len(technical_skills))
+                for row, skill in enumerate(technical_skills):
+                    self.ui_app_dialog.skills_table.setItem(row, 0, QTableWidgetItem(skill))
+
+                # Populate contact_table_widget
+                self.ui_app_dialog.contact_table_widget.setRowCount(len(contacts_data))
+                for row, contact in enumerate(contacts_data):
+                    for col, value in enumerate(contact):
+                        self.ui_app_dialog.contact_table_widget.setItem(row, col, QTableWidgetItem(str(value)))
+
+                # Populate application_status_history_table_widget
+                self.ui_app_dialog.application_status_history_table_widget.setRowCount(len(status_history_data))
+                for row, status_data in enumerate(status_history_data):
+                    for col, value in enumerate(status_data):
+                        self.ui_app_dialog.application_status_history_table_widget.setItem(row, col, QTableWidgetItem(str(value)))
+
+
+    def onViewApplicationButtonClicked(self):
+        pass
         
