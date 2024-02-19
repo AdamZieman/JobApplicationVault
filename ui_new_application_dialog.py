@@ -11,7 +11,6 @@ from PyQt5.QtWidgets import (
 
 class Ui_NewApplication_Dialog(object):
     def setupUi(self, dialog):
-        print("Setting up Ui_NewApplication_Dialog")
         # dialog window
         dialog.setObjectName("Dialog")
         dialog.resize(500, 800)
@@ -442,15 +441,14 @@ class Ui_NewApplication_Dialog(object):
         # spacer item
         spacerItem1 = QSpacerItem(177, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         self.actionsFrame_layout.addItem(spacerItem1)
+
+
+
+
+        
         self.actionsOutterFrameLayout.addWidget(self.actions_frame)
         self.bodyFrameLayout.addWidget(self.actions_outter_frame)
         self.scrollAreaLayout.addWidget(self.body_frame)
-
-
-
-
-
-        # scroll area
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.dialogWindowLayout.addWidget(self.scrollArea)
 
