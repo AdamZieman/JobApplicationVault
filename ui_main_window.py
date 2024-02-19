@@ -616,7 +616,6 @@ class Ui_MainWindow(object):
         self.new_application_button.setFont(font)
         self.new_application_button.clicked.connect(self.openNewApplication)
         self.new_application_button.setObjectName("new_application_button")
-
         self.applicationContentActionsFrame_layout.addWidget(self.new_application_button)
 
         # view application button
@@ -626,8 +625,8 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.view_application_button.setFont(font)
-        self.view_application_button.setObjectName("view_application_button")
         self.view_application_button.clicked.connect(self.openViewApplication)
+        self.view_application_button.setObjectName("view_application_button")
         self.applicationContentActionsFrame_layout.addWidget(self.view_application_button)
 
         # application content actions frame right spacer
@@ -1067,9 +1066,9 @@ class Ui_MainWindow(object):
             self.dialog.accept()
 
     def openViewApplication(self):
-        print("Clicked View Application button.")
         self.dialog = QDialog()
         self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
-        ui_app_dialog = Ui_ViewApplication_Dialog()
-        ui_app_dialog.setupUi(self.dialog)
+        self.ui_app_dialog = Ui_ViewApplication_Dialog()
+        self.ui_app_dialog.setupUi(self.dialog)
+        # connect buttons
         self.dialog.show()
