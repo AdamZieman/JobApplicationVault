@@ -1066,9 +1066,19 @@ class Ui_MainWindow(object):
             self.dialog.accept()
 
     def openViewApplication(self):
-        self.dialog = QDialog()
-        self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
-        self.ui_app_dialog = Ui_ViewApplication_Dialog()
-        self.ui_app_dialog.setupUi(self.dialog)
-        # connect buttons
-        self.dialog.show()
+        # Get the index of the currently selected row
+        selected_row = self.appications_table_widget.currentRow()
+        # Check if a valid row is selected
+        if selected_row >= 0:
+            # Retrieve data from the selected row
+            selected_data = [self.appications_table_widget.item(selected_row, col).text() for col in range(self.appications_table_widget.columnCount())]
+            print(selected_data)
+
+            self.dialog = QDialog()
+            self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
+            self.ui_app_dialog = Ui_ViewApplication_Dialog()
+            self.ui_app_dialog.setupUi(self.dialog)
+            self.dialog.show()
+
+
+        
