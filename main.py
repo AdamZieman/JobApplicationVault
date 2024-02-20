@@ -37,7 +37,7 @@ def setUp_database():
     try:
         connection = sqlite3.connect(db_file)
         print(f"Connected to the database: {db_file}")
-    except sqlite3.Error:
+    except sqlite3.Error as e:
         print(f"Error connecting to the database: {e}")
         exit()
 
