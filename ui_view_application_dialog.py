@@ -87,7 +87,26 @@ class Ui_ViewApplication_Dialog(object):
             "}\n"
             "QLineEdit, QComboBox, QPlainTextEdit, QTableWidget {\n"
                 "border: 0px;\n"
-            "}"
+            "}\n"
+            "QTableWidget {\n"
+                "border: 1px solid rgb(220, 220, 220);\n"
+                "background-color: white;\n"
+            "}\n"
+            "QHeaderView:Section {\n"
+                "height: 30px;\n"
+                "border: none;\n"
+                "background-color: rgb(33, 150, 243);\n"
+                "color: white;\n"
+            "}\n"
+            "QTableWidget:Item {\n"
+                "padding-left: 3px;\n"
+            "}\n"
+            "QTableView::Item {\n"
+                "background-color: rgb(213, 230, 243);\n"
+            "}\n"
+            "QTableView::Item:Alternate {\n"
+                "background-color: rgb(236, 240, 243);\n"
+            "}\n"
         )
         self.body_frame.setFrameShape(QFrame.StyledPanel)
         self.body_frame.setFrameShadow(QFrame.Raised)
@@ -313,13 +332,17 @@ class Ui_ViewApplication_Dialog(object):
         self.skills_table.setMinimumSize(QSize(0, 200))
         self.skills_table.setMaximumSize(QSize(16777215, 200))
         self.skills_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.skills_table.setAlternatingRowColors(True)
+        self.skills_table.setSelectionMode(QAbstractItemView.NoSelection)
+        self.skills_table.setShowGrid(False)
         self.skills_table.setObjectName("skills_table")
         self.skills_table.setColumnCount(1)
         self.skills_table.setRowCount(0)
         item = QTableWidgetItem()
         self.skills_table.setHorizontalHeaderItem(0, item)
-        self.skills_table.horizontalHeader().setVisible(True)
+        self.skills_table.horizontalHeader().setVisible(False)
         self.skills_table.verticalHeader().setVisible(False)
+        self.skills_table.setColumnWidth(0, 409)
         self.skillsFrameLayout.addWidget(self.skills_table)
 
         # skill action outter frame
@@ -439,6 +462,7 @@ class Ui_ViewApplication_Dialog(object):
         self.contact_table_widget.setMinimumSize(QSize(0, 150))
         self.contact_table_widget.setMaximumSize(QSize(16777215, 150))
         self.contact_table_widget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.contact_table_widget.setAlternatingRowColors(True)
         self.contact_table_widget.setSelectionMode(QAbstractItemView.NoSelection)
         self.contact_table_widget.setShowGrid(False)
         self.contact_table_widget.setObjectName("contact_table_widget")
@@ -446,14 +470,17 @@ class Ui_ViewApplication_Dialog(object):
         self.contact_table_widget.setRowCount(0)
         item = QTableWidgetItem()
         self.contact_table_widget.setHorizontalHeaderItem(0, item)
+        self.contact_table_widget.setColumnWidth(0, 150)
         item = QTableWidgetItem()
         self.contact_table_widget.setHorizontalHeaderItem(1, item)
         item = QTableWidgetItem()
         self.contact_table_widget.setHorizontalHeaderItem(2, item)
         item = QTableWidgetItem()
         self.contact_table_widget.setHorizontalHeaderItem(3, item)
+        self.contact_table_widget.setColumnWidth(3, 200)
         item = QTableWidgetItem()
         self.contact_table_widget.setHorizontalHeaderItem(4, item)
+        self.contact_table_widget.setColumnWidth(4, 150)
         self.contact_table_widget.verticalHeader().setVisible(False)
         self.contactInformationGroupBoxLayout.addWidget(self.contact_table_widget)
 
@@ -709,6 +736,7 @@ class Ui_ViewApplication_Dialog(object):
         self.application_status_history_table_widget = QTableWidget(self.application_status_history_group_box)
         self.application_status_history_table_widget.setMinimumSize(QSize(0, 150))
         self.application_status_history_table_widget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.application_status_history_table_widget.setAlternatingRowColors(True)
         self.application_status_history_table_widget.setSelectionMode(QAbstractItemView.NoSelection)
         self.application_status_history_table_widget.setShowGrid(False)
         self.application_status_history_table_widget.setWordWrap(True)
@@ -717,6 +745,7 @@ class Ui_ViewApplication_Dialog(object):
         self.application_status_history_table_widget.setRowCount(0)
         item = QTableWidgetItem()
         self.application_status_history_table_widget.setHorizontalHeaderItem(0, item)
+        self.application_status_history_table_widget.setColumnWidth(0, 290)
         item = QTableWidgetItem()
         self.application_status_history_table_widget.setHorizontalHeaderItem(1, item)
         self.application_status_history_table_widget.verticalHeader().setVisible(False)

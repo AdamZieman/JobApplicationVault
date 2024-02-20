@@ -557,7 +557,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         item.setFont(font)
-        self.appications_table_widget.setColumnWidth(0, 200)
+        self.appications_table_widget.setColumnWidth(0, 180)
         # column 1 (position)
         self.appications_table_widget.setHorizontalHeaderItem(1, item)
         item = QTableWidgetItem()
