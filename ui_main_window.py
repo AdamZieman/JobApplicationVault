@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import (
 
 from ui_new_application_dialog import *
 from ui_view_application_dialog import *
+from ui_new_question_dialog import *
 
 
 class Ui_MainWindow(object):
@@ -407,14 +408,14 @@ class Ui_MainWindow(object):
         self.application_status_filter_frame.setFrameShape(QFrame.StyledPanel)
         self.application_status_filter_frame.setFrameShadow(QFrame.Raised)
         self.application_status_filter_frame.setObjectName("application_status_filter_frame")
-        self.verticalLayout = QVBoxLayout(self.application_status_filter_frame)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout.setObjectName("verticalLayout")
+        self.applicationStatusFilterFrame_layout = QVBoxLayout(self.application_status_filter_frame)
+        self.applicationStatusFilterFrame_layout.setContentsMargins(0, 0, 0, 0)
+        self.applicationStatusFilterFrame_layout.setObjectName("applicationStatusFilterFrame_layout")
 
         # application status filter label
         self.application_status_filter_label = QLabel(self.application_status_filter_frame)
         self.application_status_filter_label.setObjectName("application_status_filter_label")
-        self.verticalLayout.addWidget(self.application_status_filter_label)
+        self.applicationStatusFilterFrame_layout.addWidget(self.application_status_filter_label)
 
         # screening status filter group box
         self.application_status_filter_combo_box = QComboBox(self.application_status_filter_frame)
@@ -423,7 +424,7 @@ class Ui_MainWindow(object):
         self.application_status_filter_combo_box.setObjectName("application_status_filter_combo_box")
         for _ in range(6):
             self.application_status_filter_combo_box.addItem("")
-        self.verticalLayout.addWidget(self.application_status_filter_combo_box)
+        self.applicationStatusFilterFrame_layout.addWidget(self.application_status_filter_combo_box)
         self.applicationFilterContentGroupbox_layout.addWidget(self.application_status_filter_frame)
         self.applicationFilterOutterFrame_layout.addWidget(self.application_filter_content_groupbox)
 
@@ -781,7 +782,7 @@ class Ui_MainWindow(object):
         self.questionsPage_layout.setSpacing(0)
         self.questionsPage_layout.setObjectName("questionsPage_layout")
 
-        # questions page header frame
+        # questions header frame
         self.questions_header_frame = QFrame(self.questions_page)
         self.questions_header_frame.setMinimumSize(QSize(0, 80))
         self.questions_header_frame.setMaximumSize(QSize(16777215, 80))
@@ -797,7 +798,7 @@ class Ui_MainWindow(object):
         self.questionsHeaderFrame_layout.setSpacing(0)
         self.questionsHeaderFrame_layout.setObjectName("questionsHeaderFrame_layout")
 
-        # questions page title label
+        # questions title label
         self.questions_title = QLabel(self.questions_header_frame)
         font = QFont()
         font.setPointSize(14)
@@ -809,11 +810,199 @@ class Ui_MainWindow(object):
         self.questionsHeaderFrame_layout.addWidget(self.questions_title)
         self.questionsPage_layout.addWidget(self.questions_header_frame)
 
-        # questions page body frame
+        # questions body frame
         self.questions_body_frame = QFrame(self.questions_page)
         self.questions_body_frame.setFrameShape(QFrame.StyledPanel)
         self.questions_body_frame.setFrameShadow(QFrame.Raised)
         self.questions_body_frame.setObjectName("questions_body_frame")
+        self.questionsBodyFrame_layout = QVBoxLayout(self.questions_body_frame)
+        self.questionsBodyFrame_layout.setContentsMargins(24, 24, 24, 24)
+        self.questionsBodyFrame_layout.setSpacing(0)
+        self.questionsBodyFrame_layout.setObjectName("questionsBodyFrame_layout")
+
+        # questions navigation frame
+        self.questions_navagation_frame = QFrame(self.questions_body_frame)
+        self.questions_navagation_frame.setStyleSheet(
+            "QFrame {\n"
+                "background-color: rgb(59, 84, 188);\n"
+                "color: white;\n"
+            "}\n"
+            "QPushButton {\n"
+                "border:1px solid rgb(59, 84, 188);\n"
+                "background-color: rgb(100, 115, 220);\n"
+                "color: white;\n"
+            "}"
+        )
+        self.questions_navagation_frame.setFrameShape(QFrame.StyledPanel)
+        self.questions_navagation_frame.setFrameShadow(QFrame.Raised)
+        self.questions_navagation_frame.setObjectName("questions_navagation_frame")
+        self.questionsNavigationFrame_layout = QHBoxLayout(self.questions_navagation_frame)
+        self.questionsNavigationFrame_layout.setContentsMargins(0, 0, 0, 0)
+        self.questionsNavigationFrame_layout.setSpacing(0)
+        self.questionsNavigationFrame_layout.setObjectName("questionsNavigationFrame_layout")
+
+        # general questions page button
+        self.general_questions_page_button = QPushButton(self.questions_navagation_frame)
+        self.general_questions_page_button.setMinimumSize(QSize(0, 30))
+        self.general_questions_page_button.setStyleSheet(
+            "QPushButton {\n"
+                "border:1px solid rgb(59, 84, 188);\n"
+                "background-color: rgb(59, 84, 188);\n"
+                "color: white;\n"
+            "}"
+        )
+        font = QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.general_questions_page_button.setFont(font)
+        self.general_questions_page_button.setObjectName("general_questions_page_button")
+        self.general_questions_page_button.clicked.connect(self.showGeneralQuestionsPage)
+        self.questionsNavigationFrame_layout.addWidget(self.general_questions_page_button)
+
+        # technical questions page button
+        self.technical_questions_page_button = QPushButton(self.questions_navagation_frame)
+        self.technical_questions_page_button.setMinimumSize(QSize(0, 30))
+        font = QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.technical_questions_page_button.setFont(font)
+        self.technical_questions_page_button.setObjectName("technical_questions_page_button")
+        self.technical_questions_page_button.clicked.connect(self.showTechnicalQuestionsPage)
+        self.questionsNavigationFrame_layout.addWidget(self.technical_questions_page_button)
+
+        # coding questions page button
+        self.coding_questions_page_button = QPushButton(self.questions_navagation_frame)
+        self.coding_questions_page_button.setMinimumSize(QSize(0, 30))
+        font = QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.coding_questions_page_button.setFont(font)
+        self.coding_questions_page_button.setObjectName("coding_questions_page_button")
+        self.coding_questions_page_button.clicked.connect(self.showCodingQuestionsPage)
+        self.questionsNavigationFrame_layout.addWidget(self.coding_questions_page_button)
+        self.questionsBodyFrame_layout.addWidget(self.questions_navagation_frame)
+
+        # questions stacked widget
+        self.questions_stacked_widget = QStackedWidget(self.questions_body_frame)
+        self.questions_stacked_widget.setStyleSheet(
+            "QPlainTextEdit {\n"
+                "background-color: rgb(255, 255, 255);\n"
+            "}"
+        )
+        self.questions_stacked_widget.setObjectName("questions_stacked_widget")
+
+        # general questions page
+        self.general_questions_page = QWidget()
+        self.general_questions_page.setObjectName("general_questions_page")
+        self.generalQuestionsPage_layout = QVBoxLayout(self.general_questions_page)
+        self.generalQuestionsPage_layout.setContentsMargins(0, 0, 0, 0)
+        self.generalQuestionsPage_layout.setSpacing(0)
+        self.generalQuestionsPage_layout.setObjectName("generalQuestionsPage_layout")
+
+        # general questions plain text edit
+        self.general_questions_plain_text_edit = QPlainTextEdit(self.general_questions_page)
+        font = QFont()
+        font.setPointSize(11)
+        self.general_questions_plain_text_edit.setFont(font)
+        self.general_questions_plain_text_edit.setFrameShape(QFrame.NoFrame)
+        self.general_questions_plain_text_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.general_questions_plain_text_edit.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.general_questions_plain_text_edit.setReadOnly(True)
+        self.general_questions_plain_text_edit.setObjectName("general_questions_plain_text_edit")
+        self.generalQuestionsPage_layout.addWidget(self.general_questions_plain_text_edit)
+        self.questions_stacked_widget.addWidget(self.general_questions_page)
+
+        # technical questions page
+        self.technical_questions_page = QWidget()
+        self.technical_questions_page.setObjectName("technical_questions_page")
+        self.technicalQuestionsPage_layout = QVBoxLayout(self.technical_questions_page)
+        self.technicalQuestionsPage_layout.setContentsMargins(0, 0, 0, 0)
+        self.technicalQuestionsPage_layout.setSpacing(0)
+        self.technicalQuestionsPage_layout.setObjectName("technicalQuestionsPage_layout")
+
+        # technical questions plain text edit
+        self.technical_questions_plain_text_edit = QPlainTextEdit(self.technical_questions_page)
+        font = QFont()
+        font.setPointSize(11)
+        self.technical_questions_plain_text_edit.setFont(font)
+        self.technical_questions_plain_text_edit.setFrameShape(QFrame.NoFrame)
+        self.technical_questions_plain_text_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.technical_questions_plain_text_edit.setReadOnly(True)
+        self.technical_questions_plain_text_edit.setObjectName("technical_questions_plain_text_edit")
+        self.technicalQuestionsPage_layout.addWidget(self.technical_questions_plain_text_edit)
+        self.questions_stacked_widget.addWidget(self.technical_questions_page)
+
+        # coding questions page
+        self.coding_questions_page = QWidget()
+        self.coding_questions_page.setObjectName("coding_questions_page")
+        self.codingQuestionsPage_layout = QVBoxLayout(self.coding_questions_page)
+        self.codingQuestionsPage_layout.setContentsMargins(0, 0, 0, 0)
+        self.codingQuestionsPage_layout.setSpacing(0)
+        self.codingQuestionsPage_layout.setObjectName("codingQuestionsPage_layout")
+
+        # coding questions plain text edit
+        self.coding_questions_plain_text_edit = QPlainTextEdit(self.coding_questions_page)
+        font = QFont()
+        font.setPointSize(11)
+        self.coding_questions_plain_text_edit.setFont(font)
+        self.coding_questions_plain_text_edit.setFrameShape(QFrame.NoFrame)
+        self.coding_questions_plain_text_edit.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.coding_questions_plain_text_edit.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.coding_questions_plain_text_edit.setReadOnly(True)
+        self.coding_questions_plain_text_edit.setObjectName("coding_questions_plain_text_edit")
+        self.codingQuestionsPage_layout.addWidget(self.coding_questions_plain_text_edit)
+        self.questions_stacked_widget.addWidget(self.coding_questions_page)
+        self.questionsBodyFrame_layout.addWidget(self.questions_stacked_widget)
+
+        # questions action frame
+        self.questions_action_frame = QFrame(self.questions_body_frame)
+        self.questions_action_frame.setStyleSheet(
+            "QPushButton {\n"
+                "padding: 15px 35px;\n"
+                "border: none;\n"
+                "border-radius: 5px;\n"
+                "background-color: rgb(59, 84, 188);\n"
+                "color: white;\n"
+            "}\n"
+            "QPushButton:Hover {\n"
+                "background-color: rgb(32, 61, 188);\n"
+            "}\n"
+            "QPushButton:Pressed {\n"
+                "background-color: rgb(59, 84, 188);\n"
+            "}"
+        )
+        self.questions_action_frame.setFrameShape(QFrame.StyledPanel)
+        self.questions_action_frame.setFrameShadow(QFrame.Raised)
+        self.questions_action_frame.setObjectName("questions_action_frame")
+        self.questionsActionFrame_layout = QHBoxLayout(self.questions_action_frame)
+        self.questionsActionFrame_layout.setContentsMargins(0, 24, 0, 0)
+        self.questionsActionFrame_layout.setSpacing(0)
+        self.questionsActionFrame_layout.setObjectName("questionsActionFrame_layout")
+
+        # spacer
+        spacerItem6 = QSpacerItem(422, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.questionsActionFrame_layout.addItem(spacerItem6)
+
+        # new question button
+        self.new_question_button = QPushButton(self.questions_action_frame)
+        font = QFont()
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.new_question_button.setFont(font)
+        self.new_question_button.setObjectName("new_question_button")
+        self.new_question_button.clicked.connect(self.newQuestion)
+        self.questionsActionFrame_layout.addWidget(self.new_question_button)
+
+        # spacer
+        spacerItem7 = QSpacerItem(421, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.questionsActionFrame_layout.addItem(spacerItem7)
+
+        #
+        self.questionsBodyFrame_layout.addWidget(self.questions_action_frame)
         self.questionsPage_layout.addWidget(self.questions_body_frame)
         self.stackedWidget.addWidget(self.questions_page)
 
@@ -953,6 +1142,10 @@ class Ui_MainWindow(object):
 
         # questions page
         self.questions_title.setText(_translate("MainWindow", "QUESTIONS"))
+        self.general_questions_page_button.setText(_translate("MainWindow", "General Questions"))
+        self.technical_questions_page_button.setText(_translate("MainWindow", "Technical Questions"))
+        self.coding_questions_page_button.setText(_translate("MainWindow", "Coding Questions"))
+        self.new_question_button.setText(_translate("MainWindow", "New Question"))
 
 
 
@@ -966,7 +1159,7 @@ class Ui_MainWindow(object):
 
 
     def showApplicationsPage(self):
-         # Change page
+        # Change page
         self.stackedWidget.setCurrentIndex(0)
 
         # Change application title frame's color
@@ -1020,6 +1213,7 @@ class Ui_MainWindow(object):
     def showQuestionsPage(self):
         # Change page
         self.stackedWidget.setCurrentIndex(2)
+        self.populateQuestions()
 
         # Change application title frame's color
         self.application_title_frame.setStyleSheet(
@@ -1501,3 +1695,180 @@ class Ui_MainWindow(object):
             for col, value in enumerate(status_data):
                 item = QTableWidgetItem(str(value))
                 self.ui_app_dialog.application_status_history_table_widget.setItem(row, col, item)
+    
+    def populateQuestions(self):
+        # Populate general questions
+        self.populateTextEditFromFile("data/general-interview-questions.txt", self.general_questions_plain_text_edit)
+
+        # Populate technical questions
+        self.populateTextEditFromFile("data/technical-interview-questions.txt", self.technical_questions_plain_text_edit)
+
+        # Populate coding questions
+        self.populateTextEditFromFile("data/coding-interview-questions.txt", self.coding_questions_plain_text_edit)
+
+    def populateTextEditFromFile(self, file_path, text_edit):
+        try:
+            with open(file_path, 'r') as file:
+                content = file.read()
+                text_edit.setPlainText(content)
+        except FileNotFoundError:
+            print(f"File not found: {file_path}")
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+
+    def showGeneralQuestionsPage(self):
+        # Change page
+        self.questions_stacked_widget.setCurrentIndex(0)
+
+        # Change navagation's application button color
+        self.general_questions_page_button.setStyleSheet(
+            "QPushButton {\n"
+                "border:1px solid rgb(59, 84, 188);\n"
+                "background-color: rgb(59, 84, 188);\n"
+                "color: white;\n"
+            "}"
+        )
+
+        # Revert unselected navagations' button colors
+        self.technical_questions_page_button.setStyleSheet(
+            "QPushButton {\n"
+                "border:1px solid rgb(59, 84, 188);\n"
+                "background-color: rgb(100, 115, 220);\n"
+                "color: white;\n"
+            "}"
+        )
+        self.coding_questions_page_button.setStyleSheet(
+            "QPushButton {\n"
+                "border:1px solid rgb(59, 84, 188);\n"
+                "background-color: rgb(100, 115, 220);\n"
+                "color: white;\n"
+            "}"
+        )
+
+    def showTechnicalQuestionsPage(self):
+        # Change page
+        self.questions_stacked_widget.setCurrentIndex(1)
+
+        # Change navagation's application button color
+        self.general_questions_page_button.setStyleSheet(
+            "QPushButton {\n"
+                "border:1px solid rgb(59, 84, 188);\n"
+                "background-color: rgb(100, 115, 220);\n"
+                "color: white;\n"
+            "}"
+        )
+
+        # Revert unselected navagations' button colors
+        self.technical_questions_page_button.setStyleSheet(
+            "QPushButton {\n"
+                "border:1px solid rgb(59, 84, 188);\n"
+                "background-color: rgb(59, 84, 188);\n"
+                "color: white;\n"
+            "}"
+        )
+        self.coding_questions_page_button.setStyleSheet(
+            "QPushButton {\n"
+                "border:1px solid rgb(59, 84, 188);\n"
+                "background-color: rgb(100, 115, 220);\n"
+                "color: white;\n"
+            "}"
+        )
+
+    def showCodingQuestionsPage(self):
+        # Change page
+        self.questions_stacked_widget.setCurrentIndex(2)
+
+        # Change navagation's application button color
+        self.general_questions_page_button.setStyleSheet(
+            "QPushButton {\n"
+                "border:1px solid rgb(59, 84, 188);\n"
+                "background-color: rgb(100, 115, 220);\n"
+                "color: white;\n"
+            "}"
+        )
+
+        # Revert unselected navagations' button colors
+        self.technical_questions_page_button.setStyleSheet(
+            "QPushButton {\n"
+                "border:1px solid rgb(59, 84, 188);\n"
+                "background-color: rgb(100, 115, 220);\n"
+                "color: white;\n"
+            "}"
+        )
+        self.coding_questions_page_button.setStyleSheet(
+            "QPushButton {\n"
+                "border:1px solid rgb(59, 84, 188);\n"
+                "background-color: rgb(59, 84, 188);\n"
+                "color: white;\n"
+            "}"
+        )
+
+    def newQuestion(self):
+        self.dialog = QDialog()
+        self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
+        self.ui_app_dialog = Ui_NewQuestion_Dialog()
+        self.ui_app_dialog.setupUi(self.dialog)
+        self.ui_app_dialog.add_question_button.clicked.connect(self.addQuestion)
+        self.dialog.show()
+
+
+    def addQuestion(self):
+        new_question = self.ui_app_dialog.body_plain_text_edit.toPlainText()
+        new_question = new_question.strip()
+
+        # if new_question is empty after being stripped, change the error message
+        if len(new_question) == 0:
+            self.ui_app_dialog.error_label.setText("No question supplied!")
+
+        else:
+            # Determine the file path based on the selected question type
+            if self.ui_app_dialog.general_question_radio_button.isChecked():
+                file_path = "data/general-interview-questions.txt"
+            elif self.ui_app_dialog.technical_question_radio_button.isChecked():
+                file_path = "data/technical-interview-questions.txt"
+            elif self.ui_app_dialog.coding_question_radio_button.isChecked():
+                file_path = "data/coding-interview-questions.txt"
+            else:
+                self.ui_app_dialog.error_label.setText("Select a question type!")
+                return
+
+            # Check if the question is unique before writing it to the file
+            if not self.isQuestionUnique(file_path, new_question):
+                self.ui_app_dialog.error_label.setText("Question already exists!")
+                return
+
+            # Write the new question to the file
+            with open(file_path, "a") as file:
+                file.write(new_question + "\n\n")
+                if self.ui_app_dialog.coding_question_radio_button.isChecked():
+                    file.write("-" * 110 + "\n\n")
+
+            self.ui_app_dialog.error_label.setText("")
+            self.populateTextEditFromFile(file_path, self.getCorrespondingPlainTextEdit())
+
+            # Update the Application's table
+            self.populateQuestions()
+
+            # Close the dialog window
+            self.dialog.accept()
+
+    def isQuestionUnique(self, file_path, new_question):
+        try:
+            with open(file_path, "r") as file:
+                existing_questions = file.readlines()
+                return new_question + "\n\n" not in existing_questions
+        except FileNotFoundError:
+            # Handle file not found error
+            return True
+
+    def getCorrespondingPlainTextEdit(self):
+        if self.ui_app_dialog.general_question_radio_button.isChecked():
+            return self.general_questions_plain_text_edit
+        elif self.ui_app_dialog.technical_question_radio_button.isChecked():
+            return self.technical_questions_plain_text_edit
+        elif self.ui_app_dialog.coding_question_radio_button.isChecked():
+            return self.coding_questions_plain_text_edit
+        else:
+            return None
+
+
