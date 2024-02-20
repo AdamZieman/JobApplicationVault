@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1203</width>
+    <width>1256</width>
     <height>878</height>
    </rect>
   </property>
@@ -323,6 +323,9 @@ QPushButton:Hover {
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="currentIndex">
+          <number>1</number>
          </property>
          <widget class="QWidget" name="applications_page">
           <property name="styleSheet">
@@ -1348,7 +1351,7 @@ QTableView::Item:Selected {
                     <number>0</number>
                    </property>
                    <attribute name="horizontalHeaderVisible">
-                    <bool>true</bool>
+                    <bool>false</bool>
                    </attribute>
                    <attribute name="horizontalHeaderCascadingSectionResizes">
                     <bool>false</bool>
@@ -1603,6 +1606,109 @@ color:white;</string>
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <property name="spacing">
+               <number>24</number>
+              </property>
+              <property name="leftMargin">
+               <number>24</number>
+              </property>
+              <property name="topMargin">
+               <number>24</number>
+              </property>
+              <property name="rightMargin">
+               <number>24</number>
+              </property>
+              <property name="bottomMargin">
+               <number>24</number>
+              </property>
+              <item>
+               <widget class="QTableWidget" name="tableWidget">
+                <property name="styleSheet">
+                 <string notr="true">QTableWidget {
+    border: 1px solid rgb(220, 220, 220);
+    background-color: white;
+}
+
+QHeaderView:Section {
+    height: 30px;
+    border: none;
+    background-color: rgb(196, 46, 68);
+    color: white;
+}
+
+QTableWidget:Item {
+    padding-left: 3px;
+}
+
+QTableView::Item {
+    background-color: rgb(213, 230, 243);
+}
+
+QTableView::Item:Alternate {
+    background-color: rgb(236, 240, 243);
+}</string>
+                </property>
+                <property name="verticalScrollBarPolicy">
+                 <enum>Qt::ScrollBarAlwaysOn</enum>
+                </property>
+                <property name="editTriggers">
+                 <set>QAbstractItemView::NoEditTriggers</set>
+                </property>
+                <property name="tabKeyNavigation">
+                 <bool>false</bool>
+                </property>
+                <property name="dragDropOverwriteMode">
+                 <bool>true</bool>
+                </property>
+                <property name="showGrid">
+                 <bool>false</bool>
+                </property>
+                <property name="cornerButtonEnabled">
+                 <bool>false</bool>
+                </property>
+                <attribute name="horizontalHeaderVisible">
+                 <bool>true</bool>
+                </attribute>
+                <attribute name="horizontalHeaderCascadingSectionResizes">
+                 <bool>false</bool>
+                </attribute>
+                <attribute name="verticalHeaderVisible">
+                 <bool>false</bool>
+                </attribute>
+                <column>
+                 <property name="text">
+                  <string>Company</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Position</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>First Name</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Last Name</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Email</string>
+                 </property>
+                </column>
+                <column>
+                 <property name="text">
+                  <string>Phone</string>
+                 </property>
+                </column>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
