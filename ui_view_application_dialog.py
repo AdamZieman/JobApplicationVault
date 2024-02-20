@@ -859,7 +859,7 @@ class Ui_ViewApplication_Dialog(object):
         self.contact_last_name_label.setText(_translate("Dialog", "*Last Name:"))
         self.contact_phone_label.setText(_translate("Dialog", "Phone Number:"))
         self.contact_email_label.setText(_translate("Dialog", "Email Address:"))
-        self.contact_error_label.setText(_translate("Dialog", "SAMPLE ERROR MESSAGE"))
+        self.contact_error_label.setText(_translate("Dialog", ""))
         self.add_contact_button.setText(_translate("Dialog", "Add Contact"))
         self.application_status_history_group_box.setTitle(_translate("Dialog", "Application Status History"))
 

@@ -1076,6 +1076,7 @@ class Ui_MainWindow(object):
             self.ui_app_dialog = Ui_ViewApplication_Dialog()
             self.ui_app_dialog.setupUi(self.dialog)
             self.ui_app_dialog.add_skill_button.clicked.connect(lambda: self.onAddSkillsButtonClicked(job_application_id))
+            self.ui_app_dialog.add_contact_button.clicked.connect(lambda: self.addContact(job_application_id))
             self.dialog.show()
 
             # Retrieve data from the selected row
@@ -1203,8 +1204,6 @@ class Ui_MainWindow(object):
 
                 # Commit the changes
                 conn.commit()
-
-                # Close the connection
                 conn.close()
 
                 # Clear the error label
@@ -1216,10 +1215,8 @@ class Ui_MainWindow(object):
             except Exception:
                 self.ui_app_dialog.skill_error_label.setText(f"{skill_value} skill already exists!")
                 conn.rollback()
-
-            finally:
                 conn.close()
-
+                
     def updateSkillsTable(self, job_application_id):
         # Update the skills_table with the latest data from the database
         conn = sqlite3.connect('data/JobApplicationVault_database.db')
@@ -1243,3 +1240,79 @@ class Ui_MainWindow(object):
         for row, skill in enumerate(technical_skills):
             self.ui_app_dialog.skills_table.setItem(row, 0, QTableWidgetItem(skill))
         
+    def addContact(self, job_application_id):
+        # Get the values from the input fields
+        position = self.ui_app_dialog.contact_position_line_edit.text()
+        first_name = self.ui_app_dialog.contact_first_name_line_edit.text()
+        last_name = self.ui_app_dialog.contact_last_name_line_edit.text()
+        phone = self.ui_app_dialog.contact_phone_line_edit.text()
+        email = self.ui_app_dialog.contact_email_line_edit.text()
+
+        # Check if either first name or last name is empty
+        if not first_name:
+            self.ui_app_dialog.contact_error_label.setText("Enter a first name!")
+            return
+        elif not last_name:
+            self.ui_app_dialog.contact_error_label.setText("Enter a last name!")
+            return
+        else:
+            # Connect to SQLite database
+            conn = sqlite3.connect('data/JobApplicationVault_database.db')
+            cursor = conn.cursor()
+
+            try:
+                # Check if the contact with the same first name and last name already exists for this job application
+                existing_contact_query = cursor.execute('''
+                    SELECT contact_id FROM contacts
+                    WHERE job_application_id = ? AND first_name = ? AND last_name = ?;
+                ''', (job_application_id, first_name, last_name))
+
+                existing_contact_id = existing_contact_query.fetchone()
+
+                if existing_contact_id:
+                    raise ValueError("Contact with the same first name and last name already exists for this job application.")
+
+                # Insert contact into the database
+                cursor.execute('''
+                    INSERT INTO contacts (position, first_name, last_name, phone, email, job_application_id)
+                    VALUES (?, ?, ?, ?, ?, ?);
+                ''', (position, first_name, last_name, phone, email, job_application_id))
+
+                # Commit the changes
+                conn.commit()
+                conn.close()
+
+                # Update the contact_table_widget
+                self.updateContactTableWidget(job_application_id)
+
+                # Clear the input fields
+                self.ui_app_dialog.contact_position_line_edit.clear()
+                self.ui_app_dialog.contact_first_name_line_edit.clear()
+                self.ui_app_dialog.contact_last_name_line_edit.clear()
+                self.ui_app_dialog.contact_phone_line_edit.clear()
+                self.ui_app_dialog.contact_email_line_edit.clear()
+                self.ui_app_dialog.contact_error_label.clear()
+            except Exception:
+                self.ui_app_dialog.contact_error_label.setText(f"{first_name} {last_name} is already a contact!")
+                conn.rollback()
+                conn.close()
+
+    def updateContactTableWidget(self, job_application_id):
+        conn = sqlite3.connect('data/JobApplicationVault_database.db')
+        cursor = conn.cursor()
+
+        contacts_query = cursor.execute('''
+            SELECT position, first_name, last_name, email, phone FROM contacts
+            WHERE job_application_id = ?;
+        ''', (job_application_id,))
+
+        contacts_data = contacts_query.fetchall()
+
+        # Close the connection
+        conn.close()
+
+        # Update contact_table_widget
+        self.ui_app_dialog.contact_table_widget.setRowCount(len(contacts_data))
+        for row, contact in enumerate(contacts_data):
+            for col, value in enumerate(contact):
+                self.ui_app_dialog.contact_table_widget.setItem(row, col, QTableWidgetItem(str(value)))
