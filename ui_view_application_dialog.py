@@ -800,6 +800,7 @@ class Ui_ViewApplication_Dialog(object):
         self.application_status_date_edit.setMaximumSize(QSize(16777215, 25))
         self.application_status_date_edit.setMaximumDate(QDate(2124, 12, 31))
         self.application_status_date_edit.setMinimumDate(QDate(2024, 1, 1))
+        self.application_status_date_edit.setDate(QDate.currentDate())
         self.application_status_date_edit.setCalendarPopup(True)
         self.application_status_date_edit.setObjectName("application_status_date_edit")
         self.applicationStatusHistoryActionsFrameLayout.addWidget(self.application_status_date_edit)
@@ -868,7 +869,7 @@ class Ui_ViewApplication_Dialog(object):
             item = self.application_status_history_table_widget.horizontalHeaderItem(index)
             item.setText(_translate("Dialog", application_status_history_table_columns[index]))
 
-        self.application_status_error_label.setText(_translate("Dialog", "SAMPLE ERROR MESSAGE"))
+        self.application_status_error_label.setText(_translate("Dialog", ""))
 
         application_statuses = ["-", "Screening Interview", "Technical Interview", "Job Offer", "Application Rejected"]
         for index in range(5):

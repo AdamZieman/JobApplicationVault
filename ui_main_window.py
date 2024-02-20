@@ -109,7 +109,7 @@ class Ui_MainWindow(object):
         self.applications_page_button.setFont(font)
         self.applications_page_button.setObjectName("applications_page_button")
         self.navagationFrame_layout.addWidget(self.applications_page_button)
-        self.applications_page_button.clicked.connect(self.show_applications_page)
+        self.applications_page_button.clicked.connect(self.showApplicationsPage)
 
         # contacts page button
         self.contacts_page_button = QPushButton(self.navagation_frame)
@@ -120,7 +120,7 @@ class Ui_MainWindow(object):
         self.contacts_page_button.setFont(font)
         self.contacts_page_button.setObjectName("contacts_page_button")
         self.navagationFrame_layout.addWidget(self.contacts_page_button)
-        self.contacts_page_button.clicked.connect(self.show_contacts_page)
+        self.contacts_page_button.clicked.connect(self.showContactsPage)
 
         # questions page button
         self.questions_page_button = QPushButton(self.navagation_frame)
@@ -131,7 +131,7 @@ class Ui_MainWindow(object):
         self.questions_page_button.setFont(font)
         self.questions_page_button.setObjectName("questions_page_button")
         self.navagationFrame_layout.addWidget(self.questions_page_button)
-        self.questions_page_button.clicked.connect(self.show_questions_page)
+        self.questions_page_button.clicked.connect(self.showQuestionsPage)
 
         # statistics page button
         self.statistics_page_button = QPushButton(self.navagation_frame)
@@ -142,7 +142,7 @@ class Ui_MainWindow(object):
         self.statistics_page_button.setFont(font)
         self.statistics_page_button.setObjectName("statistics_page_button")
         self.navagationFrame_layout.addWidget(self.statistics_page_button)
-        self.statistics_page_button.clicked.connect(self.show_statistics_page)
+        self.statistics_page_button.clicked.connect(self.showStatisticsPage)
 
         # navagation frame bottom spacer
         spacerItem = QSpacerItem(20, 551, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -174,9 +174,9 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName("stackedWidget")
 
 
+    
 
-
-
+        
         # applications page
         self.applications_page = QWidget()
         self.applications_page.setStyleSheet(
@@ -591,7 +591,7 @@ class Ui_MainWindow(object):
         self.applicationContentFrame_layout.addWidget(self.appications_table_widget)
 
         # populate the applications table widget
-        self.populate_applications_table()
+        self.populateApplicationTable()
 
         # application content actions frame
         self.application_content_actions_frame = QFrame(self.application_content_frame)
@@ -614,7 +614,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.new_application_button.setFont(font)
-        self.new_application_button.clicked.connect(self.openNewApplication)
+        self.new_application_button.clicked.connect(self.newApplication)
         self.new_application_button.setObjectName("new_application_button")
         self.applicationContentActionsFrame_layout.addWidget(self.new_application_button)
 
@@ -625,7 +625,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.view_application_button.setFont(font)
-        self.view_application_button.clicked.connect(self.openViewApplication)
+        self.view_application_button.clicked.connect(self.viewApplication)
         self.view_application_button.setObjectName("view_application_button")
         self.applicationContentActionsFrame_layout.addWidget(self.view_application_button)
 
@@ -855,7 +855,7 @@ class Ui_MainWindow(object):
 
 
 
-    def show_applications_page(self):
+    def showApplicationsPage(self):
          # Change page
         self.stackedWidget.setCurrentIndex(0)
 
@@ -881,7 +881,7 @@ class Ui_MainWindow(object):
             ""
         )
 
-    def show_contacts_page(self):
+    def showContactsPage(self):
         # Change page
         self.stackedWidget.setCurrentIndex(1)
 
@@ -907,7 +907,7 @@ class Ui_MainWindow(object):
             ""
         )
 
-    def show_questions_page(self):
+    def showQuestionsPage(self):
         # Change page
         self.stackedWidget.setCurrentIndex(2)
 
@@ -933,7 +933,7 @@ class Ui_MainWindow(object):
             ""
         )
 
-    def show_statistics_page(self):
+    def showStatisticsPage(self):
         # Change page
         self.stackedWidget.setCurrentIndex(3)
 
@@ -959,7 +959,7 @@ class Ui_MainWindow(object):
             ""
         )
 
-    def populate_applications_table(self):
+    def populateApplicationTable(self):
         connection = sqlite3.connect("data/JobApplicationVault_database.db")
         cur = connection.cursor()
 
@@ -1006,15 +1006,15 @@ class Ui_MainWindow(object):
         # Close the database connection
         connection.close()
     
-    def openNewApplication(self):
+    def newApplication(self):
         self.dialog = QDialog()
         self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
         self.ui_app_dialog = Ui_NewApplication_Dialog()
         self.ui_app_dialog.setupUi(self.dialog)
-        self.ui_app_dialog.create_button.clicked.connect(self.on_create_button_clicked)
+        self.ui_app_dialog.create_button.clicked.connect(self.createApplication)
         self.dialog.show()
 
-    def on_create_button_clicked(self):
+    def createApplication(self):
         company = self.ui_app_dialog.company_line_edit.text()
         city = self.ui_app_dialog.city_line_edit.text()
         state = self.ui_app_dialog.state_combo_box.currentText()
@@ -1060,12 +1060,12 @@ class Ui_MainWindow(object):
             conn.close()
 
             # Update the Application's table
-            self.populate_applications_table()
+            self.populateApplicationTable()
 
             # Close the dialog window
             self.dialog.accept()
 
-    def openViewApplication(self):
+    def viewApplication(self):
         # Get the index of the currently selected row
         selected_row = self.appications_table_widget.currentRow()
         # Check if a valid row is selected
@@ -1075,8 +1075,9 @@ class Ui_MainWindow(object):
             self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
             self.ui_app_dialog = Ui_ViewApplication_Dialog()
             self.ui_app_dialog.setupUi(self.dialog)
-            self.ui_app_dialog.add_skill_button.clicked.connect(lambda: self.onAddSkillsButtonClicked(job_application_id))
+            self.ui_app_dialog.add_skill_button.clicked.connect(lambda: self.addSkill(job_application_id))
             self.ui_app_dialog.add_contact_button.clicked.connect(lambda: self.addContact(job_application_id))
+            self.ui_app_dialog.add_application_status_button.clicked.connect(lambda: self.addApplicationStatus(job_application_id))
             self.dialog.show()
 
             # Retrieve data from the selected row
@@ -1168,7 +1169,7 @@ class Ui_MainWindow(object):
                     for col, value in enumerate(status_data):
                         self.ui_app_dialog.application_status_history_table_widget.setItem(row, col, QTableWidgetItem(str(value)))
 
-    def onAddSkillsButtonClicked(self, job_application_id):
+    def addSkill(self, job_application_id):
         skill_value = self.ui_app_dialog.add_skill_line_edit.text()
         if len(skill_value) == 0:
             # User inputted a value
@@ -1210,14 +1211,14 @@ class Ui_MainWindow(object):
                 self.ui_app_dialog.skill_error_label.clear()
 
                 # Update skills_table
-                self.updateSkillsTable(job_application_id)
+                self.populateSkillTable(job_application_id)
 
             except Exception:
                 self.ui_app_dialog.skill_error_label.setText(f"{skill_value} skill already exists!")
                 conn.rollback()
                 conn.close()
                 
-    def updateSkillsTable(self, job_application_id):
+    def populateSkillTable(self, job_application_id):
         # Update the skills_table with the latest data from the database
         conn = sqlite3.connect('data/JobApplicationVault_database.db')
         cursor = conn.cursor()
@@ -1283,7 +1284,7 @@ class Ui_MainWindow(object):
                 conn.close()
 
                 # Update the contact_table_widget
-                self.updateContactTableWidget(job_application_id)
+                self.populateContactTable(job_application_id)
 
                 # Clear the input fields
                 self.ui_app_dialog.contact_position_line_edit.clear()
@@ -1297,7 +1298,7 @@ class Ui_MainWindow(object):
                 conn.rollback()
                 conn.close()
 
-    def updateContactTableWidget(self, job_application_id):
+    def populateContactTable(self, job_application_id):
         conn = sqlite3.connect('data/JobApplicationVault_database.db')
         cursor = conn.cursor()
 
@@ -1316,3 +1317,77 @@ class Ui_MainWindow(object):
         for row, contact in enumerate(contacts_data):
             for col, value in enumerate(contact):
                 self.ui_app_dialog.contact_table_widget.setItem(row, col, QTableWidgetItem(str(value)))
+
+    def addApplicationStatus(self, job_application_id):
+        # Check if the selected value in application_status_combo_box is not "-"
+        selected_status = self.ui_app_dialog.application_status_combo_box.currentText()
+        if selected_status == "-":
+            self.ui_app_dialog.application_status_error_label.setText("Add a status!")
+        else:
+            # Get the date from the application_status_date_edit
+            selected_date = self.ui_app_dialog.application_status_date_edit.date()
+
+            # Connect to SQLite database
+            conn = sqlite3.connect('data/JobApplicationVault_database.db')
+            cursor = conn.cursor()
+
+            # Retrieve the most recent date from the database
+            most_recent_date_query = cursor.execute('''
+                SELECT MAX(julian_date) FROM application_statuses
+                WHERE job_application_id = ?;
+            ''', (job_application_id,))
+
+            most_recent_date_result = most_recent_date_query.fetchone()
+            most_recent_date = most_recent_date_result[0] if most_recent_date_result else None
+
+            # Check if the selected_date is greater than or equal to the most recent date in the database
+            if most_recent_date is not None and selected_date.toJulianDay() < most_recent_date:
+                most_recent_date_str = QDate.fromJulianDay(most_recent_date).toString("MM/dd/yyyy")
+                self.ui_app_dialog.application_status_error_label.setText(f"Date cannot be before {most_recent_date_str}!")
+                conn.rollback()
+                conn.close()
+            else:
+                # Insert application status into the database
+                cursor.execute('''
+                    INSERT INTO application_statuses (status, julian_date, job_application_id)
+                    VALUES (?, ?, ?);
+                    ''', (selected_status, selected_date.toJulianDay(), job_application_id))
+
+                # Commit the changes and close the connection
+                conn.commit()
+                conn.close()
+
+                # Reload the application status history and application tables
+                self.populateApplicationStatusHisoryTable(job_application_id)
+                self.populateApplicationTable()
+
+                # Optionally, you may want to clear the input fields or update the UI as needed
+                self.ui_app_dialog.application_status_combo_box.setCurrentIndex(0)
+                self.ui_app_dialog.application_status_date_edit.setDate(QDate.currentDate())
+                self.ui_app_dialog.application_status_error_label.clear()
+
+    def populateApplicationStatusHisoryTable(self, job_application_id):
+        # Connect to SQLite database
+        conn = sqlite3.connect('data/JobApplicationVault_database.db')
+        cursor = conn.cursor()
+
+        # Retrieve application status history
+        status_history_query = cursor.execute('''
+            SELECT status, date(julian_date) FROM application_statuses
+            WHERE job_application_id = ? ORDER BY julian_date DESC;
+        ''', (job_application_id,))
+
+        status_history_data = status_history_query.fetchall()
+
+        # Close the database connection
+        conn.close()
+
+        # Clear existing items in the table
+        self.ui_app_dialog.application_status_history_table_widget.clearContents()
+
+        # Populate application_status_history_table_widget
+        self.ui_app_dialog.application_status_history_table_widget.setRowCount(len(status_history_data))
+        for row, status_data in enumerate(status_history_data):
+            for col, value in enumerate(status_data):
+                item = QTableWidgetItem(str(value))
+                self.ui_app_dialog.application_status_history_table_widget.setItem(row, col, item)
