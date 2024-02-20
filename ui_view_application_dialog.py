@@ -745,7 +745,7 @@ class Ui_ViewApplication_Dialog(object):
         self.application_status_history_table_widget.setRowCount(0)
         item = QTableWidgetItem()
         self.application_status_history_table_widget.setHorizontalHeaderItem(0, item)
-        self.application_status_history_table_widget.setColumnWidth(0, 290)
+        self.application_status_history_table_widget.setColumnWidth(0, 309)
         item = QTableWidgetItem()
         self.application_status_history_table_widget.setHorizontalHeaderItem(1, item)
         self.application_status_history_table_widget.verticalHeader().setVisible(False)
