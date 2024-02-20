@@ -754,22 +754,7 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.contacts_page)
 
         # populate contacts page table
-        connection = sqlite3.connect("data\JobApplicationVault_database.db")
-        cursor = connection.cursor()
-        query = """
-            SELECT job_applications.company, contacts.position,
-                contacts.first_name, contacts.last_name, contacts.email, contacts.phone
-            FROM job_applications
-            JOIN contacts ON job_applications.job_application_id = contacts.job_application_id
-        """
-        cursor.execute(query)
-        data = cursor.fetchall()
-        self.contacts_page_table_widget.setRowCount(len(data))
-        for row_index, row_data in enumerate(data):
-            for col_index, value in enumerate(row_data):
-                item = QTableWidgetItem(str(value))
-                self.contacts_page_table_widget.setItem(row_index, col_index, item)
-        connection.close()
+        self.populateContactsPageTable()
 
 
 
@@ -1589,6 +1574,7 @@ class Ui_MainWindow(object):
 
                 # Update the contact_table_widget
                 self.populateContactTable(job_application_id)
+                self.populateContactsPageTable()
 
                 # Clear the input fields
                 self.ui_app_dialog.contact_position_line_edit.clear()
@@ -1695,6 +1681,24 @@ class Ui_MainWindow(object):
             for col, value in enumerate(status_data):
                 item = QTableWidgetItem(str(value))
                 self.ui_app_dialog.application_status_history_table_widget.setItem(row, col, item)
+
+    def populateContactsPageTable(self):
+        connection = sqlite3.connect("data\JobApplicationVault_database.db")
+        cursor = connection.cursor()
+        query = """
+            SELECT job_applications.company, contacts.position,
+                contacts.first_name, contacts.last_name, contacts.email, contacts.phone
+            FROM job_applications
+            JOIN contacts ON job_applications.job_application_id = contacts.job_application_id
+        """
+        cursor.execute(query)
+        data = cursor.fetchall()
+        self.contacts_page_table_widget.setRowCount(len(data))
+        for row_index, row_data in enumerate(data):
+            for col_index, value in enumerate(row_data):
+                item = QTableWidgetItem(str(value))
+                self.contacts_page_table_widget.setItem(row_index, col_index, item)
+        connection.close()
     
     def populateQuestions(self):
         # Populate general questions
@@ -1810,7 +1814,6 @@ class Ui_MainWindow(object):
         self.ui_app_dialog.setupUi(self.dialog)
         self.ui_app_dialog.add_question_button.clicked.connect(self.addQuestion)
         self.dialog.show()
-
 
     def addQuestion(self):
         new_question = self.ui_app_dialog.body_plain_text_edit.toPlainText()
