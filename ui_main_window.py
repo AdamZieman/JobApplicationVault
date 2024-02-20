@@ -516,45 +516,44 @@ class Ui_MainWindow(object):
         self.appications_table_widget.verticalHeader().setVisible(False)
         self.appications_table_widget.setObjectName("appications_table_widget")
         self.appications_table_widget.setColumnCount(5)
+        # company column
         item = QTableWidgetItem()
         font = QFont()
         font.setBold(True)
         font.setWeight(75)
         item.setFont(font)
-        item.setBackground(QColor(255, 255, 255))
-        # column 0 (company)
         self.appications_table_widget.setHorizontalHeaderItem(0, item)
-        item = QTableWidgetItem()
-        font = QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        item.setFont(font)
         self.appications_table_widget.setColumnWidth(0, 180)
-        # column 1 (position)
+        # position column
+        item = QTableWidgetItem()
+        font = QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        item.setFont(font)
         self.appications_table_widget.setHorizontalHeaderItem(1, item)
-        item = QTableWidgetItem()
-        font = QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        item.setFont(font)
         self.appications_table_widget.setColumnWidth(1, 300)
-        # column 2 (location)
+        # location column
+        item = QTableWidgetItem()
+        font = QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        item.setFont(font)
         self.appications_table_widget.setHorizontalHeaderItem(2, item)
-        item = QTableWidgetItem()
-        font = QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        item.setFont(font)
         self.appications_table_widget.setColumnWidth(2, 300)
-        # column 3 (status)
-        self.appications_table_widget.setHorizontalHeaderItem(3, item)
+        # applicaiton status column
         item = QTableWidgetItem()
         font = QFont()
         font.setBold(True)
         font.setWeight(75)
         item.setFont(font)
+        self.appications_table_widget.setHorizontalHeaderItem(3, item)
         self.appications_table_widget.setColumnWidth(3, 300)
-        # column 4 (date)
+        # application status date column
+        item = QTableWidgetItem()
+        font = QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        item.setFont(font)
         self.appications_table_widget.setHorizontalHeaderItem(4, item)
         self.appications_table_widget.horizontalHeader().setVisible(True)
         self.appications_table_widget.horizontalHeader().setCascadingSectionResizes(False)
@@ -656,9 +655,120 @@ class Ui_MainWindow(object):
         self.contacts_body_frame.setFrameShape(QFrame.StyledPanel)
         self.contacts_body_frame.setFrameShadow(QFrame.Raised)
         self.contacts_body_frame.setObjectName("contacts_body_frame")
+        self.contactsBodyFrame_layout = QVBoxLayout(self.contacts_body_frame)
+        self.contactsBodyFrame_layout.setContentsMargins(24, 24, 24, 24)
+        self.contactsBodyFrame_layout.setSpacing(24)
+        self.contactsBodyFrame_layout.setObjectName("contactsBodyFrame_layout")
+
+        # contacts table widget
+        self.contacts_page_table_widget = QTableWidget(self.contacts_body_frame)
+        self.contacts_page_table_widget.setStyleSheet(
+            "QTableWidget {\n"
+                "border: 1px solid rgb(220, 220, 220);\n"
+                "background-color: white;\n"
+            "}\n"
+            "QHeaderView:Section {\n"
+                "height: 30px;\n"
+                "border: none;\n"
+                "background-color: rgb(196, 46, 68);\n"
+                "color: white;\n"
+            "}\n"
+            "QTableWidget:Item {\n"
+                "padding-left: 3px;\n"
+            "}\n"
+            "QTableView::Item {\n"
+                "background-color: rgb(243, 212, 212);\n"
+            "}\n"
+            "QTableView::Item:Alternate {\n"
+                "background-color: rgb(243, 236, 236);\n"
+            "}"
+        )
+        self.contacts_page_table_widget.setLineWidth(1)
+        self.contacts_page_table_widget.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.contacts_page_table_widget.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.contacts_page_table_widget.setAlternatingRowColors(True)
+        self.contacts_page_table_widget.setSelectionMode(QAbstractItemView.NoSelection)
+        self.contacts_page_table_widget.setTabKeyNavigation(False)
+        self.contacts_page_table_widget.setDragDropOverwriteMode(True)
+        self.contacts_page_table_widget.setShowGrid(False)
+        self.contacts_page_table_widget.setGridStyle(Qt.SolidLine)
+        self.contacts_page_table_widget.setCornerButtonEnabled(False)
+        self.contacts_page_table_widget.setObjectName("contacts_page_table_widget")
+        self.contacts_page_table_widget.setColumnCount(6)
+        self.contacts_page_table_widget.setRowCount(0)
+        # company column
+        item = QTableWidgetItem()
+        item = QTableWidgetItem()
+        font = QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        item.setFont(font)
+        self.contacts_page_table_widget.setHorizontalHeaderItem(0, item)
+        self.contacts_page_table_widget.setColumnWidth(0, 180)
+        # position column
+        item = QTableWidgetItem()
+        font = QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        item.setFont(font)
+        self.contacts_page_table_widget.setHorizontalHeaderItem(1, item)
+        self.contacts_page_table_widget.setColumnWidth(1, 300)
+        # first name column
+        item = QTableWidgetItem()
+        font = QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        item.setFont(font)
+        self.contacts_page_table_widget.setHorizontalHeaderItem(2, item)
+        self.contacts_page_table_widget.setColumnWidth(2, 300)
+        # last name column
+        item = QTableWidgetItem()
+        font = QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        item.setFont(font)
+        self.contacts_page_table_widget.setHorizontalHeaderItem(3, item)
+        self.contacts_page_table_widget.setColumnWidth(3, 300)
+        # email column
+        item = QTableWidgetItem()
+        font = QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        item.setFont(font)
+        self.contacts_page_table_widget.setHorizontalHeaderItem(4, item)
+        self.contacts_page_table_widget.setColumnWidth(4, 370)
+        # phone column
+        item = QTableWidgetItem()
+        font = QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        item.setFont(font)
+        self.contacts_page_table_widget.setHorizontalHeaderItem(5, item)
+        self.contacts_page_table_widget.setColumnWidth(5, 200)
+        self.contacts_page_table_widget.horizontalHeader().setVisible(True)
+        self.contacts_page_table_widget.horizontalHeader().setCascadingSectionResizes(False)
+        self.contacts_page_table_widget.verticalHeader().setVisible(False)
+        self.contactsBodyFrame_layout.addWidget(self.contacts_page_table_widget)
         self.contactsPage_layout.addWidget(self.contacts_body_frame)
         self.stackedWidget.addWidget(self.contacts_page)
 
+        # populate contacts page table
+        connection = sqlite3.connect("data\JobApplicationVault_database.db")
+        cursor = connection.cursor()
+        query = """
+            SELECT job_applications.company, contacts.position,
+                contacts.first_name, contacts.last_name, contacts.email, contacts.phone
+            FROM job_applications
+            JOIN contacts ON job_applications.job_application_id = contacts.job_application_id
+        """
+        cursor.execute(query)
+        data = cursor.fetchall()
+        self.contacts_page_table_widget.setRowCount(len(data))
+        for row_index, row_data in enumerate(data):
+            for col_index, value in enumerate(row_data):
+                item = QTableWidgetItem(str(value))
+                self.contacts_page_table_widget.setItem(row_index, col_index, item)
+        connection.close()
 
 
 
@@ -776,6 +886,12 @@ class Ui_MainWindow(object):
         _translate = QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.application_title.setText(_translate("MainWindow", "Job Application Vault"))
+
+
+
+
+
+        # applications page
         self.applications_page_button.setText(_translate("MainWindow", "Applications"))
         self.contacts_page_button.setText(_translate("MainWindow", "Contacts"))
         self.questions_page_button.setText(_translate("MainWindow", "Questions"))
@@ -819,8 +935,30 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Date"))
         self.new_application_button.setText(_translate("MainWindow", "New Application"))
         self.view_application_button.setText(_translate("MainWindow", "View Application"))
+
+
+
+
+
+        # contacts page
         self.contacts_title.setText(_translate("MainWindow", "CONTACTS"))
+        contacts_columns = [ "Company", "Postion", "First Name", "Last Name", "Email", "Phone" ]
+        for index in range(6):
+            item = self.contacts_page_table_widget.horizontalHeaderItem(index)
+            item.setText(_translate("MainWindow", contacts_columns[index]))
+
+
+
+
+
+        # questions page
         self.questions_title.setText(_translate("MainWindow", "QUESTIONS"))
+
+
+
+
+
+        # statistics page
         self.statistics_title.setText(_translate("MainWindow", "STATISTICS"))
 
 
