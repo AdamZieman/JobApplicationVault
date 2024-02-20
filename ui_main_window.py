@@ -396,63 +396,35 @@ class Ui_MainWindow(object):
         self.application_state_filter_combo_box.setMaximumSize(QSize(16777215, 25))
         self.application_state_filter_combo_box.setStyleSheet("")
         self.application_state_filter_combo_box.setObjectName("application_state_filter_combo_box")
-        for i in range(51):
+        for _ in range(51):
             self.application_state_filter_combo_box.addItem("")
         self.applicationStateFilterFrame_layout.addWidget(self.application_state_filter_combo_box)
         self.applicationFilterContentGroupbox_layout.addWidget(self.application_state_filter_frame)
 
-        # application status filter group box
-        self.application_status_filter_groupbox = QGroupBox(self.application_filter_content_groupbox)
-        font = QFont()
-        font.setPointSize(8)
-        font.setBold(False)
-        font.setWeight(50)
-        self.application_status_filter_groupbox.setFont(font)
-        self.application_status_filter_groupbox.setStyleSheet(
-            "QGroupBox {\n"
-                "padding-top: 0px;\n"
-                "color: black;\n"
-                "border-radius: 10px;\n"
-            "}\n"
-            "QCheckBox:Indicator:Unchecked {\n"
-                "border: 1px solid rgb(220, 220, 220);\n"
-                "border-radius: 2px;\n"
-                "background-color: white;\n"
-            "}"
-        )
-        self.application_status_filter_groupbox.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-        self.application_status_filter_groupbox.setFlat(True)
-        self.application_status_filter_groupbox.setObjectName("application_status_filter_groupbox")
-        self.applicationStatusFilterGroupBox_layout = QVBoxLayout(self.application_status_filter_groupbox)
-        self.applicationStatusFilterGroupBox_layout.setContentsMargins(-1, 20, -1, -1)
-        self.applicationStatusFilterGroupBox_layout.setObjectName("applicationStatusFilterGroupBox_layout")
+        # application status filter frame
+        self.application_status_filter_frame = QFrame(self.application_filter_content_groupbox)
+        self.application_status_filter_frame.setMinimumSize(QSize(0, 0))
+        self.application_status_filter_frame.setFrameShape(QFrame.StyledPanel)
+        self.application_status_filter_frame.setFrameShadow(QFrame.Raised)
+        self.application_status_filter_frame.setObjectName("application_status_filter_frame")
+        self.verticalLayout = QVBoxLayout(self.application_status_filter_frame)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
 
-        # application submitted check box
-        self.application_submitted_checkbox = QCheckBox(self.application_status_filter_groupbox)
-        self.application_submitted_checkbox.setAutoFillBackground(False)
-        self.application_submitted_checkbox.setObjectName("application_submitted_checkbox")
-        self.applicationStatusFilterGroupBox_layout.addWidget(self.application_submitted_checkbox)
+        # application status filter label
+        self.application_status_filter_label = QLabel(self.application_status_filter_frame)
+        self.application_status_filter_label.setObjectName("application_status_filter_label")
+        self.verticalLayout.addWidget(self.application_status_filter_label)
 
-        # screening interview check box
-        self.screening_interview_checkbox = QCheckBox(self.application_status_filter_groupbox)
-        self.screening_interview_checkbox.setObjectName("screening_interview_checkbox")
-        self.applicationStatusFilterGroupBox_layout.addWidget(self.screening_interview_checkbox)
-
-        # technical interview check box
-        self.technical_interview_checkbox = QCheckBox(self.application_status_filter_groupbox)
-        self.technical_interview_checkbox.setObjectName("technical_interview_checkbox")
-        self.applicationStatusFilterGroupBox_layout.addWidget(self.technical_interview_checkbox)
-
-        # job offer check box
-        self.job_offer_check_box = QCheckBox(self.application_status_filter_groupbox)
-        self.job_offer_check_box.setObjectName("job_offer_check_box")
-        self.applicationStatusFilterGroupBox_layout.addWidget(self.job_offer_check_box)
-
-        # application rejected check box
-        self.application_rejected_checkbox = QCheckBox(self.application_status_filter_groupbox)
-        self.application_rejected_checkbox.setObjectName("application_rejected_checkbox")
-        self.applicationStatusFilterGroupBox_layout.addWidget(self.application_rejected_checkbox)
-        self.applicationFilterContentGroupbox_layout.addWidget(self.application_status_filter_groupbox)
+        # screening status filter group box
+        self.application_status_filter_combo_box = QComboBox(self.application_status_filter_frame)
+        self.application_status_filter_combo_box.setMinimumSize(QSize(0, 25))
+        self.application_status_filter_combo_box.setMaximumSize(QSize(16777215, 25))
+        self.application_status_filter_combo_box.setObjectName("application_status_filter_combo_box")
+        for _ in range(6):
+            self.application_status_filter_combo_box.addItem("")
+        self.verticalLayout.addWidget(self.application_status_filter_combo_box)
+        self.applicationFilterContentGroupbox_layout.addWidget(self.application_status_filter_frame)
         self.applicationFilterOutterFrame_layout.addWidget(self.application_filter_content_groupbox)
 
         # application filter actions frame
@@ -827,12 +799,12 @@ class Ui_MainWindow(object):
         for index in range(51):
             self.application_state_filter_combo_box.setItemText(index, _translate("MainWindow", us_states[index]))
 
-        self.application_status_filter_groupbox.setTitle(_translate("MainWindow", "Status:"))
-        self.application_submitted_checkbox.setText(_translate("MainWindow", "Application Submitted"))
-        self.screening_interview_checkbox.setText(_translate("MainWindow", "Screening Interview"))
-        self.technical_interview_checkbox.setText(_translate("MainWindow", "Technical Interview"))
-        self.job_offer_check_box.setText(_translate("MainWindow", "Job Offer"))
-        self.application_rejected_checkbox.setText(_translate("MainWindow", "Application Rejected"))
+        self.application_status_filter_label.setText(_translate("MainWindow", "Status:"))
+
+        application_statues = [ "-", "Application Submitted", "Screening Interview", "Technical Interview", "Job Offer", "Application Rejected" ]
+        for index in range(6):
+            self.application_status_filter_combo_box.setItemText(index, _translate("MainWindow", application_statues[index]))
+        
         self.apply_application_filters_button.setText(_translate("MainWindow", "Apply"))
         self.appications_table_widget.setSortingEnabled(True)
         item = self.appications_table_widget.horizontalHeaderItem(0)

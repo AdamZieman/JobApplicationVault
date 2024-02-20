@@ -272,6 +272,9 @@ QPushButton:Hover {
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
             <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
@@ -1061,76 +1064,83 @@ QGroupBox {
                      </widget>
                     </item>
                     <item>
-                     <widget class="QGroupBox" name="application_status_filter_groupbox">
-                      <property name="font">
-                       <font>
-                        <pointsize>8</pointsize>
-                        <weight>50</weight>
-                        <bold>false</bold>
-                       </font>
+                     <widget class="QFrame" name="application_status_filter_frame">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>0</height>
+                       </size>
                       </property>
-                      <property name="styleSheet">
-                       <string notr="true">QGroupBox {
-    padding-top: 0px;
-    color: black;
-    border-radius: 10px;
-}
-
-QCheckBox:Indicator:Unchecked {
-    border: 1px solid rgb(220, 220, 220);
-    border-radius: 2px;
-    background-color: white;
-}</string>
+                      <property name="frameShape">
+                       <enum>QFrame::StyledPanel</enum>
                       </property>
-                      <property name="title">
-                       <string>Status:</string>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
                       </property>
-                      <property name="alignment">
-                       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                      </property>
-                      <property name="flat">
-                       <bool>true</bool>
-                      </property>
-                      <layout class="QVBoxLayout" name="applicationStatusFilterGroupBox_layout">
+                      <layout class="QVBoxLayout" name="verticalLayout">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
                        <property name="topMargin">
-                        <number>20</number>
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
                        </property>
                        <item>
-                        <widget class="QCheckBox" name="application_submitted_checkbox">
-                         <property name="autoFillBackground">
-                          <bool>false</bool>
-                         </property>
+                        <widget class="QLabel" name="application_status_filter_label">
                          <property name="text">
-                          <string>Application Submitted</string>
+                          <string>Status:</string>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QCheckBox" name="screening_interview_checkbox">
-                         <property name="text">
-                          <string>Screening Interview</string>
+                        <widget class="QComboBox" name="application_status_filter_combo_box">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>25</height>
+                          </size>
                          </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QCheckBox" name="technical_interview_checkbox">
-                         <property name="text">
-                          <string>Technical Interview</string>
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>25</height>
+                          </size>
                          </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QCheckBox" name="job_offer_check_box">
-                         <property name="text">
-                          <string>Job Offer</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QCheckBox" name="application_rejected_checkbox">
-                         <property name="text">
-                          <string>Application Rejected</string>
-                         </property>
+                         <item>
+                          <property name="text">
+                           <string>-</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Application Submitted</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Screening Interview</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Technical Interview</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Job Offer</string>
+                          </property>
+                         </item>
+                         <item>
+                          <property name="text">
+                           <string>Application Rejected</string>
+                          </property>
+                         </item>
                         </widget>
                        </item>
                       </layout>
