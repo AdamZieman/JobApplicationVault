@@ -1279,13 +1279,13 @@ class Ui_MainWindow(object):
                         application_statuses as2
                     WHERE
                         as2.job_application_id = ja.job_application_id
-            );
+                )
+                AND as1.status != 'Application Rejected';
         """
 
         for row in cur.execute(sqlquery):
             company, position, city, state, status, date = row
             location = f"{city}, {state}"
-        #   self.appications_table_widget.setItem(tablerow, 0, QTableWidgetItem(row[0]))
             self.appications_table_widget.setItem(tablerow, 0, QTableWidgetItem(company))
             self.appications_table_widget.setItem(tablerow, 1, QTableWidgetItem(position))
             self.appications_table_widget.setItem(tablerow, 2, QTableWidgetItem(location))
@@ -1308,8 +1308,6 @@ class Ui_MainWindow(object):
         status_filter = "" if status_filter == "-" else status_filter
 
         self.applyFiltersAndPopulateTable(company_filter, position_filter, city_filter, state_filter, status_filter)
-
-
 
     def applyFiltersAndPopulateTable(self, company_filter="", position_filter="", city_filter="", state_filter="", status_filter=""):
         connection = sqlite3.connect("data/JobApplicationVault_database.db")
@@ -1371,7 +1369,6 @@ class Ui_MainWindow(object):
         # Close the database connection
         connection.close()
 
-    
     def newApplication(self):
         self.dialog = QDialog()
         self.dialog.setWindowFlags(self.dialog.windowFlags() & ~Qt.WindowContextHelpButtonHint)
