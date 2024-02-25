@@ -451,6 +451,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.apply_application_filters_button.setFont(font)
         self.apply_application_filters_button.setObjectName("apply_application_filters_button")
+        self.apply_application_filters_button.clicked.connect(self.applyFilters)
         self.applicationFilterActionsFrame_layout.addWidget(self.apply_application_filters_button)
 
         # application filter actions frame right spacer
@@ -1280,7 +1281,7 @@ class Ui_MainWindow(object):
                         as2.job_application_id = ja.job_application_id
             );
         """
-        
+
         for row in cur.execute(sqlquery):
             company, position, city, state, status, date = row
             location = f"{city}, {state}"
@@ -1294,6 +1295,82 @@ class Ui_MainWindow(object):
 
         # Close the database connection
         connection.close()
+
+    def applyFilters(self):
+        company_filter = self.application_company_filter_line_edit.text()
+        position_filter = self.application_position_filter_line_edit.text()
+        city_filter = self.application_city_filter_line_edit.text()
+        state_filter = self.application_state_filter_combo_box.currentText()
+        status_filter = self.application_status_filter_combo_box.currentText()
+
+        # Replace "-" with an empty string
+        state_filter = "" if state_filter == "-" else state_filter
+        status_filter = "" if status_filter == "-" else status_filter
+
+        self.applyFiltersAndPopulateTable(company_filter, position_filter, city_filter, state_filter, status_filter)
+
+
+
+    def applyFiltersAndPopulateTable(self, company_filter="", position_filter="", city_filter="", state_filter="", status_filter=""):
+        connection = sqlite3.connect("data/JobApplicationVault_database.db")
+        cur = connection.cursor()
+
+        # Build the SQL query based on user filters
+        sqlquery = f"""
+            SELECT
+                ja.company,
+                ja.position,
+                ja.city,
+                ja.state,
+                as1.status,
+                date(as1.julian_date)
+            FROM
+                job_applications ja
+            JOIN
+                application_statuses as1 ON ja.job_application_id = as1.job_application_id
+            WHERE
+                as1.julian_date = (
+                    SELECT
+                        MAX(as2.julian_date)
+                    FROM
+                        application_statuses as2
+                    WHERE
+                        as2.job_application_id = ja.job_application_id
+                )
+        """
+
+        # Add user filters to the query
+        if company_filter:
+            sqlquery += f" AND ja.company = '{company_filter}'"
+        if position_filter:
+            sqlquery += f" AND ja.position = '{position_filter}'"
+        if city_filter:
+            sqlquery += f" AND ja.city = '{city_filter}'"
+        if state_filter:
+            sqlquery += f" AND ja.state = '{state_filter}'"
+        if status_filter:
+            sqlquery += f" AND as1.status = '{status_filter}'"
+
+        # Execute the query and populate the table
+        cur.execute(sqlquery)
+        rows = cur.fetchall()
+        row_count = len(rows)
+        self.appications_table_widget.setRowCount(row_count)
+
+        tablerow = 0
+        for row in rows:
+            company, position, city, state, status, date = row
+            location = f"{city}, {state}"
+            self.appications_table_widget.setItem(tablerow, 0, QTableWidgetItem(company))
+            self.appications_table_widget.setItem(tablerow, 1, QTableWidgetItem(position))
+            self.appications_table_widget.setItem(tablerow, 2, QTableWidgetItem(location))
+            self.appications_table_widget.setItem(tablerow, 3, QTableWidgetItem(status))
+            self.appications_table_widget.setItem(tablerow, 4, QTableWidgetItem(date))
+            tablerow += 1
+
+        # Close the database connection
+        connection.close()
+
     
     def newApplication(self):
         self.dialog = QDialog()
