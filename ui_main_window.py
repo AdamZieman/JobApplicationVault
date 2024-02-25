@@ -1253,12 +1253,23 @@ class Ui_MainWindow(object):
         connection = sqlite3.connect("data/JobApplicationVault_database.db")
         cur = connection.cursor()
 
-        # Set the table widget's row count to the amount of records in the job_applications table
-        cur.execute("SELECT COUNT(*) FROM job_applications")
+        # Execute the SQL query to get the count
+        cur.execute("""
+            SELECT COUNT(*)
+            FROM job_applications ja
+            JOIN application_statuses as1 ON ja.job_application_id = as1.job_application_id
+            WHERE as1.julian_date = (
+                SELECT MAX(as2.julian_date)
+                FROM application_statuses as2
+                WHERE as2.job_application_id = ja.job_application_id
+            )
+            AND as1.status != 'Application Rejected';
+        """)
+
+        # Fetch the count value
         row_count = cur.fetchone()[0]
         self.appications_table_widget.setRowCount(row_count)
         
-        tablerow = 0
         sqlquery = """
             SELECT
                 ja.company,
@@ -1283,6 +1294,7 @@ class Ui_MainWindow(object):
                 AND as1.status != 'Application Rejected';
         """
 
+        tablerow = 0
         for row in cur.execute(sqlquery):
             company, position, city, state, status, date = row
             location = f"{city}, {state}"
