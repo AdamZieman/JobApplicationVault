@@ -31,4 +31,4 @@ The Job Application Vault is a desktop application developed with Python, PyQT, 
 
 ## Screenshots
 
-<!--Screenshots of the application-->
+![Applications Page](https://github.com/AdamZieman/JobApplicationVault/blob/main/docs/screenshots/applications-page.png)
